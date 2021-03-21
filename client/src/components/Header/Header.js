@@ -1,6 +1,9 @@
 import { Navbar, NavDropdown, Nav, Card, CardDeck, Image } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { BsFillPersonFill, BsFillGridFill, BsFillHeartFill, BsFillEnvelopeFill, BsBoxArrowRight } from 'react-icons/bs';
+import { IoLogOut } from 'react-icons/io5'
 
+import './Header.css'
 function Header() {
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -13,14 +16,14 @@ function Header() {
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Моят профил" id="collasible-nav-dropdown">
-                            <NavDropdown.Item><NavLink className="dropdown-item" to="/profile">Профил</NavLink></NavDropdown.Item>
+                        <NavDropdown title="My Profile" id="collasible-nav-dropdown">
+                            <NavDropdown.Item><NavLink className="dropdown-item" to="/profile"><BsFillPersonFill />Profile</NavLink></NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item><NavLink className="dropdown-item" to="/personal-products">Обяви</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item><NavLink className="dropdown-item" to="/messages">Съобщения</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item><NavLink className="dropdown-item" to="/favourites">Любими</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item><NavLink className="dropdown-item" to="/sells"><BsFillGridFill />Sells</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item><NavLink className="dropdown-item" to="/messages"><BsFillEnvelopeFill />Messages</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item><NavLink className="dropdown-item" to="/favourites"><BsFillHeartFill />Favourites</NavLink></NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item><NavLink className="dropdown-item" to="/logout">Изход</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item><NavLink className="dropdown-item" to="/logout"><IoLogOut />Log out</NavLink></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
