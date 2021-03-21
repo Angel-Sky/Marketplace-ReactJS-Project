@@ -1,6 +1,6 @@
 import { Navbar, NavDropdown, Nav, Card, CardDeck, Image } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { BsFillPersonFill, BsFillGridFill, BsFillHeartFill, BsFillEnvelopeFill, BsBoxArrowRight } from 'react-icons/bs';
+import { BsFillPersonFill, BsFillGridFill, BsFillHeartFill, BsFillEnvelopeFill, BsFillPlusCircleFill } from 'react-icons/bs';
 import { IoLogOut } from 'react-icons/io5'
 
 import './Header.css'
@@ -12,10 +12,12 @@ function Header() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        {/* <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                     </Nav>
                     <Nav>
+                        <Nav.Link><NavLink className="nav-item" id="addButton" to="/add"><BsFillPlusCircleFill />Add product</NavLink></Nav.Link>
+
                         <NavDropdown title="My Profile" id="collasible-nav-dropdown">
                             <NavDropdown.Item><NavLink className="dropdown-item" to="/profile"><BsFillPersonFill />Profile</NavLink></NavDropdown.Item>
                             <NavDropdown.Divider />

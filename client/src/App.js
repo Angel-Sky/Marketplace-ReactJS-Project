@@ -1,9 +1,9 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Switch } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
 import Header from './components/Header/Header';
-import TopProducts from './components/Products/TopProducts';
 import Categories from './components/Categories/Categorie';
 
 function App() {
@@ -11,8 +11,12 @@ function App() {
       <>
          <Header />
          <Image src="http://store.picbg.net/pubpic/46/C5/4241166cd1c646c5.jpg" fluid />
-         <Categories />
-         <TopProducts />
+         <Switch>
+            <Route path="/" exact component={Categories} />
+            <Route path="/categories/:category" component={Categories} />
+         </Switch>
+         {/* <Categories />
+         <TopProducts /> */}
       </>
    );
 }

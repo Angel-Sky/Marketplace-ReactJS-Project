@@ -1,4 +1,12 @@
-.dropdown-item svg {
+.dropdown-item svg, 
+#addButton svg {
     margin-bottom: 2px;
     margin-right: 7px;
 }
+
+#addButton {
+    color: rgba(0,0,0,.8);
+    border: 1px solid rgba(0,0,0,.4);
+    padding: 10px;
+}
+
