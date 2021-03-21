@@ -14,6 +14,18 @@ const userSchema = new mongoose.Schema({
         required: ['Password is required'],
         minlength: [4, 'Password should be at least 4 characters long']
     },
+    createdSells: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ],
+    likedProducts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ]
 });
 
 userSchema.pre('save', async function (next) {
