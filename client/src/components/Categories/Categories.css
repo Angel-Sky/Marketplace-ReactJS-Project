@@ -1,0 +1,38 @@
+#categories {
+    text-align: center;
+    padding: 5%;
+}
+
+#categories > h1 {
+    font-family: serif;
+    margin-bottom: 3%;
+}
+
+#categories svg {
+    margin-bottom: 4px;
+    margin-right: 4px;
+}
+
+#properties > svg {
+    color: orange;
+}
+
+#auto > svg {
+    color: #4a88f9;
+}
+
+#home > svg {
+    color: #f95a5a;
+}
+
+#clothes > svg {
+    color: #f0f342;
+}
+
+#toys > svg {
+    color: #f57ecb;
+}
+
+#garden > svg {
+    color: #5aeb5a;
+}
