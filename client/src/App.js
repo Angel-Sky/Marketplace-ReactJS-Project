@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Categories from './components/Categories/Categorie';
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
+import Error404 from './components/Error404/Error404';
 
 function App() {
    return (
@@ -18,9 +19,8 @@ function App() {
             <Route path="/categories/:category" component={Categories} />
             <Route path="/auth/login" exact component={Login}/>
             <Route path="/auth/register" exact component={Register}/>
+            <Route component={Error404} />
          </Switch>
-         {/* <Categories />
-         <TopProducts /> */}
       </>
    );
 }
