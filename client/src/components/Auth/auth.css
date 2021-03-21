@@ -1,0 +1,12 @@
+.auth-form {
+    width: 30%;
+}
+
+.auth-heading {
+    position: relative;
+    top: -150px;
+    text-align: center;
+    font-family: serif;
+    font-weight: bold;
+    font-style: italic;
+}
