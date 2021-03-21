@@ -6,6 +6,7 @@ import { Image } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import Categories from './components/Categories/Categorie';
 import Login from './components/Auth/Login/Login';
+import Register from './components/Auth/Register/Register';
 
 function App() {
    return (
@@ -16,7 +17,7 @@ function App() {
             <Route path="/" exact component={Categories} />
             <Route path="/categories/:category" component={Categories} />
             <Route path="/auth/login" exact component={Login}/>
-            {/* <Route path="/auth/register" exact component={Register}/> */}
+            <Route path="/auth/register" exact component={Register}/>
          </Switch>
          {/* <Categories />
          <TopProducts /> */}
