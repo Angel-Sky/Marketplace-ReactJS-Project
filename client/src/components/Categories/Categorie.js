@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CategoriesNav from "./CategoriesNav";
 import TopProducts from '../Products/TopProducts';
-import ProductCard from "../Products/ProductCard";
+// import ProductCard from "../Products/ProductCard";
 
 function Categories({ match }) {
     let currentCategory = match.params.category;
@@ -12,13 +12,17 @@ function Categories({ match }) {
             .then(res => res.json())
             .then(res => setProduct(res));
     }, [match])
-    let products = Object.values(product).filter(x => x.category == currentCategory);
-    
+
+    let products;
+    (currentCategory && currentCategory != 'all') ?
+        products = Object.values(product).filter(x => x.category == currentCategory) :
+        products = Object.values(product);
+
     return (
         <>
             <CategoriesNav />
             {/* {products.map(x => <ProductCard key={x._id} params={x} />)} */}
-            <TopProducts params={products}/>
+            <TopProducts params={products} />
 
         </>
     )
