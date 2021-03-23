@@ -1,12 +1,13 @@
-.auth-form {
-    width: 30%;
+form {
+    margin: 0 auto;
 }
 
 .auth-heading {
-    position: relative;
-    top: -150px;
     text-align: center;
     font-family: serif;
-    font-weight: bold;
-    font-style: italic;
+    padding-bottom: 20px;
+}
+
+.btnAuth {
+    margin-top: 3%;
 }
