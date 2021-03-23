@@ -3,7 +3,7 @@
     padding: 5%;
 }
 
-#categories > h1 {
+#categories>h1 {
     font-family: serif;
     margin-bottom: 3%;
 }
@@ -13,26 +13,35 @@
     margin-right: 4px;
 }
 
-#properties > svg {
+#properties>svg {
     color: orange;
 }
 
-#auto > svg {
+#auto>svg {
     color: #4a88f9;
 }
 
-#home > svg {
+#home>svg {
     color: #f95a5a;
 }
 
-#clothes > svg {
+#clothes>svg {
     color: #f0f342;
 }
 
-#toys > svg {
+#toys>svg {
     color: #f57ecb;
 }
 
-#garden > svg {
+#garden>svg {
     color: #5aeb5a;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    margin-bottom: 15%;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CategoriesNav from "./CategoriesNav";
-import TopProducts from '../Products/TopProducts';
-// import ProductCard from "../Products/ProductCard";
+import ProductCard from "../Products/ProductCard";
+import { Col } from 'react-bootstrap'
 
 function Categories({ match }) {
     let currentCategory = match.params.category;
@@ -21,9 +21,11 @@ function Categories({ match }) {
     return (
         <>
             <CategoriesNav />
-            {/* {products.map(x => <ProductCard key={x._id} params={x} />)} */}
-            <TopProducts params={products} />
-
+            <div className="container">
+                <div className="row">
+                    {products.map(x => <Col xs={12} md={6} lg={3}><ProductCard key={x._id} params={x} /> </Col>)}
+                </div>
+            </div>
         </>
     )
 }

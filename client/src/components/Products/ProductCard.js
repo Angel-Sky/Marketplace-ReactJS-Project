@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 function ProductCard({ params }) {
     return (
@@ -6,12 +6,10 @@ function ProductCard({ params }) {
             <Card.Img variant="top" src={params.image} />
             <Card.Body>
                 <Card.Title>{params.title}</Card.Title>
-                <Card.Text>
-                    {params.description}
-                </Card.Text>
+                {/* <Card.Text></Card.Text> */}
             </Card.Body>
             <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
+                <small className="text-muted">{params.addedAt} -  {params.city}</small>
             </Card.Footer>
         </Card>
     )
