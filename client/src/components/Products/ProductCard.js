@@ -15,7 +15,7 @@ function ProductCard({ params }) {
             <Card.Footer>
                 <small className="text-muted">
                     {params.addedAt} -  {params.city} 
-                    <Link to=""><BsHeart /></Link>
+                    <Link to="" id="heartIcon"><BsHeart /></Link>
                 </small>
             </Card.Footer>
         </Card>

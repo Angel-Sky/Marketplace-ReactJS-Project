@@ -13,6 +13,11 @@
     margin-right: 4px;
 }
 
+#categories a button{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 #properties>svg {
     color: orange;
 }
@@ -44,4 +49,13 @@
 
 .card {
     margin-bottom: 15%;
+}
+
+.card-footer {
+    text-align: right;
+}
+
+#heartIcon {
+    font-size: 16pt;
+    margin-left: 5%;
 }
