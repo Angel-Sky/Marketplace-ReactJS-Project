@@ -15,10 +15,10 @@ function App() {
          <Header />
          <Switch>
             <Route path="/" exact component={Categories} />
-            <Route path="/categories/:category" component={Categories} />
+            <Route path="/categories/:category" exact component={Categories} />
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/register" exact component={Register} />
-            <Route path="/product/:id/details" exact component={ProductPage}/>
+            <Route path="/categories/:category/:id/details" component={ProductPage}/>
             <Route component={Error404} />
          </Switch>
       </>

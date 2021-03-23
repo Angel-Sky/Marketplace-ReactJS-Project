@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Col, Row, Tabs, Tab, Image, Button } from 'react-bootstrap';
-import SimpleSider from '../Siders/SimpleSider'
+import SimpleSider from '../Siders/SimpleSider';
+import Breadcrumb from './Breadcrumb'
 import Details from './Details';
 import Aside from './Aside';
 import './ProductPage.css';
@@ -21,6 +22,7 @@ function ProductPage({ match }) {
         <>
             <SimpleSider />
             <div className="container">
+                <Breadcrumb params={product} />
                 <Row>
                     <Col lg={8} id="detailsProduct">
                         <Details params={product} />
