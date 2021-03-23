@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Sider from './components/Sider/Sider'
 import Categories from './components/Home/Categories';
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
@@ -14,7 +13,6 @@ function App() {
    return (
       <>
          <Header />
-         <Sider />
          <Switch>
             <Route path="/" exact component={Categories} />
             <Route path="/categories/:category" component={Categories} />

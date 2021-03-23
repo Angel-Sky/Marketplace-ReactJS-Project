@@ -1,4 +1,4 @@
-import './Sider.css'
+import './SearchSider.css'
 
 function Sider() {
     return (

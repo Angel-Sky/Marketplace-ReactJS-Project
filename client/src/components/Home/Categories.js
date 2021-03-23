@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import SearchSider from '../Siders/SearchSider'
 import CategoriesNav from "./CategoriesNav";
 import ProductCard from "./ProductCard";
 import { Col } from 'react-bootstrap';
@@ -20,6 +21,7 @@ function Categories({ match }) {
     
     return (
         <>
+            <SearchSider />
             <CategoriesNav />
             <div className="container">
                 <div className="row">
