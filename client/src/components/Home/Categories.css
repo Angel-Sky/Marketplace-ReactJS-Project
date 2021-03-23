@@ -51,6 +51,11 @@
     margin-bottom: 15%;
 }
 
+.card-text {
+    text-align: right;
+    font-weight: bold;
+}
+
 .card-footer {
     text-align: right;
 }

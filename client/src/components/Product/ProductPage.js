@@ -1,7 +1,18 @@
-function ProductPage({match, params}) {
-    console.log(match.params.id);
+import { useEffect, useState } from 'react';
 
-    return(
+function ProductPage({ match }) {
+    let productId = match.params.id;
+    let [product, setProduct] = useState([])
+
+    useEffect(() => {
+        fetch(`https://books-f6954.firebaseio.com/products/${productId}.json`)
+            .then(res => res.json())
+            .then(res => setProduct(res));
+    }, [match])
+    
+    console.log(product);
+    
+    return (
         <>
         </>
     )

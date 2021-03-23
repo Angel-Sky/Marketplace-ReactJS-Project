@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 function ProductCard({ params }) {
     return (
         <Card>
-            <Card.Img variant="top" src={params.image} />
-            <Card.Body>
-                <Link to={`/product/${params.id}/details`}>
+            <Link to={`/product/${params.id}/details`}>
+                <Card.Img variant="top" src={params.image} />
+                <Card.Body>
                     <Card.Title>{params.title}</Card.Title>
-                </Link>
-                {/* <Card.Text></Card.Text> */}
-            </Card.Body>
+                    <Card.Text>{params.price}$</Card.Text>
+                </Card.Body>
+            </Link>
             <Card.Footer>
                 <small className="text-muted">
-                    {params.addedAt} -  {params.city} 
+                    {params.addedAt} -  {params.city}
                     <Link to="" id="heartIcon"><BsHeart /></Link>
                 </small>
             </Card.Footer>
