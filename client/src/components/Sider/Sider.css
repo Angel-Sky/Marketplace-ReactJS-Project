@@ -1,0 +1,24 @@
+#sider {
+    background-image: url('http://store.picbg.net/pubpic/46/C5/4241166cd1c646c5.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 250px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 113px;
+}
+
+#sider > input {
+    overflow: visible;
+    border-radius: 50px;
+    border: 1px;
+    font-size: 18pt;
+    background-image: url(https://cdn.icon-icons.com/icons2/2066/PNG/512/search_icon_125165.png);
+    background-repeat: no-repeat;
+    height: 55px;
+    padding-left: 68px;
+    background-position: left;
+    background-size: 40px;
+    background-position-x: 15px;
+}
