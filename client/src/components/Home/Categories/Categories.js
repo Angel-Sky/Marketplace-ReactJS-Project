@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import SearchSider from '../Siders/SearchSider'
+import SearchSider from '../../Siders/SearchSider'
 import CategoriesNav from "./CategoriesNav";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 import { Col } from 'react-bootstrap';
+
+import './Categories.css';
+import '../ProductCard/ProductCard.css';
 
 function Categories({ match }) {
     let currentCategory = match.params.category;

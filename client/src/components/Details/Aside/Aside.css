@@ -1,0 +1,9 @@
+#btnContact {
+    padding: 6px;
+}
+
+#btnContact svg {
+    font-size: 17pt;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { RiMessage3Fill } from 'react-icons/ri';
 
+import './Aside.css';
 
 function Aside({ params }) {
     const [show, setShow] = useState(false);
@@ -32,7 +33,7 @@ function Aside({ params }) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="dark" onClick={handleClose}>Sent</Button>
+                    <Link to="/"><Button variant="dark">Sent</Button></Link>
                 </Modal.Footer>
             </Modal>
         </aside>

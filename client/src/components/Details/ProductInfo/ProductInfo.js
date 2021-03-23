@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Row, Tabs, Tab, Image } from 'react-bootstrap';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-function Details({ params }) {
+
+function ProductInfo({ params }) {
     let [key, setKey] = useState('home');
     return (
         <>
@@ -32,4 +33,4 @@ function Details({ params }) {
     )
 }
 
-export default Details;
+export default ProductInfo;
