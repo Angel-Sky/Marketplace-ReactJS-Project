@@ -1,3 +1,4 @@
+/* ----- Details ------ */
 .tab-content, .heading {
     margin-left: 30px;
     padding-top: 20px;
@@ -7,4 +8,15 @@
 #heartIconDetails {
     font-size: 32pt;
     padding: 9px;
+}
+
+/* ----- Aside ------ */
+#btnContact {
+    padding: 6px;
+}
+
+#btnContact svg {
+    font-size: 17pt;
+    margin-right: 5px;
+    margin-bottom: 3px;
 }
