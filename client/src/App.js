@@ -1,5 +1,5 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 

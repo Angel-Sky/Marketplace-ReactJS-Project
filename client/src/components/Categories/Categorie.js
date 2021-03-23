@@ -14,10 +14,10 @@ function Categories({ match }) {
     }, [match])
 
     let products;
-    (currentCategory && currentCategory != 'all') ?
-        products = Object.values(product).filter(x => x.category == currentCategory) :
+    (currentCategory && currentCategory !== 'all') ?
+        products = Object.values(product).filter(x => x.category === currentCategory) :
         products = Object.values(product);
-
+    
     return (
         <>
             <CategoriesNav />

@@ -5,6 +5,7 @@ import { BsHouseDoorFill, BsFillHouseFill, BsFillPuzzleFill } from 'react-icons/
 import { AiFillCar } from 'react-icons/ai';
 import { GiFlowerPot, GiClothes } from 'react-icons/gi';
 import { TiSortAlphabetically } from 'react-icons/ti';
+import { MdPhoneAndroid } from 'react-icons/md'
 
 function CategoriesNav() {
     return (
@@ -21,6 +22,9 @@ function CategoriesNav() {
             </Link>
             <Link to="/categories/home">
                 <Button variant="dark" id="home"><BsFillHouseFill />Home</Button>{' '}
+            </Link>
+            <Link to="/categories/electronics">
+                <Button variant="dark" id="electronics"><MdPhoneAndroid />Electronics</Button>{' '}
             </Link>
             <Link to="/categories/clothes">
                 <Button variant="dark" id="clothes"><GiClothes />Clothes</Button>{' '}
