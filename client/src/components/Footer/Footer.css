@@ -1,0 +1,32 @@
+footer {
+    padding: 1rem;
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    color: gray;
+    margin-top: 3%;
+}
+
+footer a {
+    color: #000000c2;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.connections {
+    padding: 20px;
+}
+
+.connections svg {
+    font-size: 30pt;
+    margin: 7px;
+}
+
+.connections a {
+    color: #727272;
+}
+
+.connections a:hover {
+    color: #424242
+}

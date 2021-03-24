@@ -8,6 +8,7 @@ import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 import Details from './components/Details/Details';
 import AddProduct from './components/AddProduct/AddProduct'
+import Footer from './components/Footer/Footer';
 import Error404 from './components/Error404/Error404';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path='/add-product' exact component={AddProduct} />;
             <Route component={Error404} />
          </Switch>
+         <Footer />
       </>
    );
 }
