@@ -1,0 +1,14 @@
+.heading {
+    text-align: center;
+    font-family: serif;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.btnForm {
+    margin-top: 2%;
+}
+
+form > button {
+    margin-top: 2%;
+}

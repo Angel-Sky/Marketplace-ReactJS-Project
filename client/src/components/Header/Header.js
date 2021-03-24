@@ -19,7 +19,7 @@ function Header() {
                     </Nav>
                     <Nav>
                         <Nav.Link>
-                            <NavLink className="nav-item" id="addButton" to="/add">
+                            <NavLink className="nav-item" id="addButton" to="/add-product">
                                 <BsFillPlusCircleFill />Add product
                             </NavLink>
                         </Nav.Link>
