@@ -8,8 +8,8 @@ function Footer() {
         <footer>
             <div className="container">
                 <div className="connections">
-                    <a href="#" target="_blank"><FaFacebook /></a>
-                    <a href="#" target="_blank"><FaInstagramSquare /></a>
+                    <a href="/#"><FaFacebook /></a>
+                    <a href="/#"><FaInstagramSquare /></a>
                     <a href="https://www.linkedin.com/in/iva-tosheva/" target="_blank"><AiFillLinkedin /></a>
                 </div>
                 All Rights Reserved &copy; 2021 &#8226;
