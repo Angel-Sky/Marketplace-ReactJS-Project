@@ -25,21 +25,27 @@ class AddProduct extends Component {
     onSubmitHandler(e) {
         e.preventDefault();
         let { title, price, description, city, category, image } = this.state;
-        let reader = new FileReader();
-        reader.readAsDataURL(image)
-
         let obj = { title, price, description, city, category, addedAt: new Date() }
 
-        reader.onload = function () {
-            obj.image = reader.result;
-        };
-
-        console.log(obj)
-        createProduct(obj)
-            .then(res => {
-                this.props.history.push('/')
+        this.getBase64(image)
+            .then((data) => {
+                obj['image'] = data;
+                createProduct(obj)
+                    .then(res => {
+                        this.props.history.push('/')
+                    })
+                    .catch(err => console.log(err))
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+    }
+
+    getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
     }
 
     render() {

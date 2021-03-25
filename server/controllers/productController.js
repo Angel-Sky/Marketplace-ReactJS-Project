@@ -52,13 +52,14 @@ router.get('/:category/:id', (req, res) => {
 
 router.post('/', async (req, res) => {
     let { title, price, description, city, category, image, addedAt } = req.body;
-    let product = new Product({ title, price, description, city, category, image, addedAt })
-    product.save()
-        .then(r => {
-            console.log(r);
-            res.status(201).json({ movieId: r._id });
-        })
-        .catch(err => console.error(err))
+    // let product = new Product({ title, price, description, city, category, image, addedAt })
+    console.log(req.body)
+    // product.save()
+        // .then(r => {
+        //     console.log(r);
+            res.status(201).json({ movieId: true});
+        // })
+        // .catch(err => console.error(err))
     // if (total <= 0) throw { message: 'Total should be a positive number' };
 
     // let productData = {
