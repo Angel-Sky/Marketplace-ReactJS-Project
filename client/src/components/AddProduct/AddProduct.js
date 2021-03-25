@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import SimpleSider from '../Siders/SimpleSider';
 import style from './AddProduct.module.css';
-import {createProduct} from '../../services/productService';
+import { createProduct } from '../../services/productService';
 
 class AddProduct extends Component {
     constructor(props) {
@@ -26,6 +26,11 @@ class AddProduct extends Component {
         createProduct(obj)
             .then(res => console.log(res))
             .catch(err => console.log(err))
+
+        
+            this.props.history.push('/')
+       
+        // history.push('/')
     }
 
     render() {
