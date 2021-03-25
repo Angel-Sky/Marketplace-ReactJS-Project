@@ -18,41 +18,41 @@ function Header() {
                         <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                     </Nav>
                     <Nav>
-                        <Nav.Link>
+                        {/* <Nav.Link> */}
                             <NavLink className="nav-item" id="addButton" to="/add-product">
                                 <BsFillPlusCircleFill />Add product
                             </NavLink>
-                        </Nav.Link>
+                        {/* </Nav.Link> */}
                         <NavDropdown title="My Profile" id="collasible-nav-dropdown">
-                            <NavDropdown.Item>
+                            {/* <NavDropdown.Item> */}
                                 <NavLink className="dropdown-item" to="/profile">
                                     <BsFillPersonFill />Profile
                                 </NavLink>
-                            </NavDropdown.Item>
+                            {/* </NavDropdown.Item> */}
 
                             <NavDropdown.Divider />
 
-                            <NavDropdown.Item>
+                            {/* <NavDropdown.Item> */}
                                 <NavLink className="dropdown-item" to="/sells">
                                     <BsFillGridFill />Sells
                                 </NavLink>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
+                            {/* </NavDropdown.Item> */}
+                            {/* <NavDropdown.Item> */}
                                 <NavLink className="dropdown-item" to="/messages">
                                     <BsFillEnvelopeFill />Messages
                                 </NavLink>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
+                            {/* </NavDropdown.Item> */}
+                            {/* <NavDropdown.Item> */}
                                 <NavLink className="dropdown-item" to="/favourites">
                                     <BsFillHeartFill />Favourites
                                 </NavLink>
-                            </NavDropdown.Item>
+                            {/* </NavDropdown.Item> */}
                             <NavDropdown.Divider />
-                            <NavDropdown.Item>
+                            {/* <NavDropdown.Item> */}
                                 <NavLink className="dropdown-item" to="/logout">
                                     <IoLogOut />Log out
                                 </NavLink>
-                            </NavDropdown.Item>
+                            {/* </NavDropdown.Item> */}
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

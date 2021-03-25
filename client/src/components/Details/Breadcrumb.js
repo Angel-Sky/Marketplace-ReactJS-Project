@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 function BreadcrumbNav({ params }) {
     return (
         <Breadcrumb>
-            <Breadcrumb.Item>
+            <li className="breadcrumb-item">
                 <Link to="/">Home</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
+            </li>
+            <li className="breadcrumb-item">
                 <Link to={`/categories/${params.category}`}>{params.category}</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
+            </li>
+            <li  className="breadcrumb-item">
                 <Link to={`/categories/${params.category}/${params.id}/details`}>{params.title}</Link>
-            </Breadcrumb.Item>
+            </li>
         </Breadcrumb>
     )
 }
