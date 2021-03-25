@@ -1,4 +1,4 @@
-const TABLE_NAME = 'books-world';
+const TABLE_NAME = 'all-for-you';
 const config = {
     PORT: 5000,
     DB_CONNECTION: `mongodb://localhost/${TABLE_NAME}`,

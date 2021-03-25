@@ -6,7 +6,7 @@ const isAuth = require('./middlewares/isAuth');
 
 // router.use('/', mainController);
 router.use('/auth', authController);
-router.use('/add-product', productController);
+router.use('/products', productController);
 
 
 module.exports = router;

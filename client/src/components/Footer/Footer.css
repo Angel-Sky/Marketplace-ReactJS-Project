@@ -19,7 +19,7 @@ footer a:hover {
 }
 
 .connections svg {
-    font-size: 30pt;
+    /* font-size: 30pt; */
     margin: 7px;
 }
 
@@ -29,4 +29,16 @@ footer a:hover {
 
 .connections a:hover {
     color: #424242
+}
+
+#instaIcon {
+    font-size: 35pt;
+}
+
+#fbIcon {
+    font-size: 30pt;
+}
+
+#linkedIcon {
+    font-size: 34pt;
 }
