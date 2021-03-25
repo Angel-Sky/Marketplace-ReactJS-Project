@@ -24,7 +24,6 @@ const Product = require('../models/Product');
 router.get('/:category/:id', (req, res) => {
     let currentCategory = req.params.category;
     let id = req.params.id;
-    console.log(currentCategory, id)
     if (id !== 'undefined') {
         Product.findById(req.params.id)
             .then(product => {
