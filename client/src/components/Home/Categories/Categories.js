@@ -15,7 +15,7 @@ function Categories({ match }) {
     useEffect(() => {
         getAll(currentCategory)
             .then(res => setProduct(res));
-    }, [match])
+    }, [currentCategory])
 
     return (
         <>

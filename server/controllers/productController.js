@@ -3,31 +3,51 @@ const router = Router();
 const productService = require('../services/productService');
 const Product = require('../models/Product');
 
-router.get('/:category', (req, res) => {
+// router.get('/:category', (req, res) => {
+//     let currentCategory = req.params.category;
+
+//     if (currentCategory !== 'undefined' && currentCategory !== 'all') {
+//         Product.find({ currentCategory })
+//             .then(products => {
+//                 res.status(200).json(products);
+//             })
+//             .catch(err => res.status(500).json(err))
+//      } else {
+//         Product.find()
+//             .then(products => {
+//                 res.status(200).json(products);
+//             })
+//             .catch(err => res.status(500).json(err))
+//     }
+// });
+
+router.get('/:category/:id', (req, res) => {
     let currentCategory = req.params.category;
-       
+    let id = req.params.id;
+    console.log(currentCategory, id)
+    if (id !== 'undefined') {
+        Product.findById(req.params.id)
+            .then(product => {
+                res.status(200).json(product);
+            })
+            .catch(err => console.log(err))
+        return;
+    } 
+    
     if (currentCategory !== 'undefined' && currentCategory !== 'all') {
-        Product.find({ currentCategory })
+        Product.find({ category: currentCategory })
             .then(products => {
                 res.status(200).json(products);
             })
             .catch(err => res.status(500).json(err))
-     } else {
+        return;
+    } else {
         Product.find()
             .then(products => {
                 res.status(200).json(products);
             })
             .catch(err => res.status(500).json(err))
     }
-});
-
-router.get('/:category/:id', (req, res) => {
-    console.log(req.params.id)
-    Product.findById(req.params.id)
-        .then(product => {
-            res.status(200).json(product);
-        })
-        .catch(err => console.log(err))
 
 });
 
