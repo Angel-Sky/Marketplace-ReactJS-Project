@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:5000';
 
-export async function getAll() {
-    return (await fetch(`${baseUrl}/products`)).json();
+export async function getAll(category) {
+    return (await fetch(`${baseUrl}/products/${category}`)).json();
 }
 
 export async function getSpecific(id) {

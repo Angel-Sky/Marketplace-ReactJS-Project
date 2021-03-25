@@ -10,17 +10,12 @@ import '../ProductCard/ProductCard.css';
 
 function Categories({ match }) {
     let currentCategory = match.params.category;
-    const [product, setProduct] = useState([])
+    const [products, setProduct] = useState([])
 
     useEffect(() => {
-        getAll()
+        getAll(currentCategory)
             .then(res => setProduct(res));
     }, [match])
-
-    let products;
-    (currentCategory && currentCategory !== 'all') ?
-        products = Object.values(product).filter(x => x.category === currentCategory) :
-        products = Object.values(product);
 
     return (
         <>
