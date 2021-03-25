@@ -3,13 +3,30 @@ const router = Router();
 const productService = require('../services/productService');
 const Product = require('../models/Product');
 
+router.get('/', (req, res) => {
+    Product.find()
+        .then(products => {
+            res.json(products);
+        });
+});
+
+router.get('/:id', (req, res) => {
+
+    Product.findById(req.params.id)
+        .then(product => {
+            res.status(200).json(product);
+        })
+        .catch(err => console.log(err))
+    
+});
+
 router.post('/', async (req, res) => {
     let { title, price, description, city, category, image, addedAt } = req.body;
-    let product = new Product({ title, price, description, city, category, image, addedAt})
+    let product = new Product({ title, price, description, city, category, image, addedAt })
     product.save()
         .then(r => {
             console.log(r);
-            res.status(201).json({movieId: r._id});
+            res.status(201).json({ movieId: r._id });
         })
         .catch(err => console.error(err))
     // if (total <= 0) throw { message: 'Total should be a positive number' };

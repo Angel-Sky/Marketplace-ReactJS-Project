@@ -4,6 +4,7 @@ import SimpleSider from '../Siders/SimpleSider';
 import Breadcrumb from './Breadcrumb'
 import ProductInfo from './ProductInfo/ProductInfo';
 import Aside from './Aside/Aside';
+import { getSpecific } from '../../services/productService'
 
 import './ProductInfo/ProductInfo.css';
 import './Aside/Aside.css';
@@ -13,8 +14,7 @@ function Details({ match }) {
     let [product, setProduct] = useState([])
 
     useEffect(() => {
-        fetch(`https://books-f6954.firebaseio.com/products/${productId}.json`)
-            .then(res => res.json())
+        getSpecific(productId)
             .then(res => setProduct(res));
     }, [match])
 

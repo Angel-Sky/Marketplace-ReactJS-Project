@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function ProductCard({ params }) {
     return (
         <Card>
-            <Link to={`/categories/${params.category}/${params.id}/details`}>
+            <Link to={`/categories/${params.category}/${params._id}/details`}>
                 <Card.Img variant="top" src={params.image} />
                 <Card.Body>
                     <Card.Title>{params.title}</Card.Title>
