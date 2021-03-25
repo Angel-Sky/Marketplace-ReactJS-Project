@@ -11,11 +11,13 @@ import './Aside/Aside.css';
 
 function Details({ match }) {
     let productId = match.params.id;
+    let category = match.params.category
     let [product, setProduct] = useState([])
 
     useEffect(() => {
-        getSpecific(productId)
-            .then(res => setProduct(res));
+        getSpecific(category, productId)
+            .then(res => setProduct(res))
+            .catch(err => console.log(err))
     }, [match])
 
     console.log(product);

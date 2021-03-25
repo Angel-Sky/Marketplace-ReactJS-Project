@@ -4,10 +4,9 @@ export async function getAll(category) {
     return (await fetch(`${baseUrl}/products/${category}`)).json();
 }
 
-export async function getSpecific(id) {
-    return (await fetch(`${baseUrl}/products/${id}`)).json();
+export async function getSpecific(category, id) {
+    return (await fetch(`${baseUrl}/products/${category}/${id}`)).json();
 }
-
 
 export async function createProduct(product) {
     return (await fetch(`${baseUrl}/products`, {

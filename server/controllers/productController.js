@@ -5,14 +5,14 @@ const Product = require('../models/Product');
 
 router.get('/:category', (req, res) => {
     let currentCategory = req.params.category;
-    
+       
     if (currentCategory !== 'undefined' && currentCategory !== 'all') {
-        Product.find({ category: currentCategory })
+        Product.find({ currentCategory })
             .then(products => {
                 res.status(200).json(products);
             })
             .catch(err => res.status(500).json(err))
-    } else {
+     } else {
         Product.find()
             .then(products => {
                 res.status(200).json(products);
@@ -21,7 +21,8 @@ router.get('/:category', (req, res) => {
     }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:category/:id', (req, res) => {
+    console.log(req.params.id)
     Product.findById(req.params.id)
         .then(product => {
             res.status(200).json(product);

@@ -23,7 +23,11 @@ function Categories({ match }) {
             <CategoriesNav />
             <div className="container">
                 <div className="row">
-                    {products.map(x => <Col xs={12} md={6} lg={3}><ProductCard key={x._id} params={x} /> </Col>)}
+                    {products.map(x => 
+                        <Col xs={12} md={6} lg={3}>
+                            <ProductCard key={x._id.toString()} params={x} />
+                        </Col>
+                    )}
                 </div>
             </div>
         </>
