@@ -7,6 +7,7 @@ import { createProduct } from '../../services/productService';
 class AddProduct extends Component {
     constructor(props) {
         super(props);
+
         this.state = { title: "", price: "", description: "", city: "", category: "", image: "" };
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -14,32 +15,22 @@ class AddProduct extends Component {
 
     onChangeHandler(e) {
         e.preventDefault();
-
         this.setState({ [e.target.name]: e.target.value });
-
-        if (e.target.files) {
-            this.setState({ image: e.target.files[0] })
-        }
     };
 
     onSubmitHandler(e) {
         e.preventDefault();
         let { title, price, description, city, category, image } = this.state;
-        let reader = new FileReader();
-        reader.readAsDataURL(image)
-
-        let obj = { title, price, description, city, category, addedAt: new Date() }
-
-        reader.onload = function () {
-            obj.image = reader.result;
-        };
+        
+        let obj = { title, price, description, city, category, image, addedAt: new Date() }
 
         console.log(obj)
         createProduct(obj)
-            .then(res => {
-                this.props.history.push('/')
-            })
+            .then(res => console.log(res))
             .catch(err => console.log(err))
+
+        
+            this.props.history.push('/')
     }
 
     render() {
@@ -88,7 +79,7 @@ class AddProduct extends Component {
 
                             <Form.Group as={Col} controlId="formGridImage" >
                                 <Form.Label>Image</Form.Label>
-                                <Form.Control name="image" type="file" required onChange={this.onChangeHandler} />
+                                <Form.Control name="image" required onChange={this.onChangeHandler} />
                             </Form.Group>
                         </Form.Row>
 
