@@ -62,13 +62,13 @@ class AddProduct extends Component {
                                 <Form.Label>Category</Form.Label>
                                 <Form.Control as="select" defaultValue="Choose..." name="category" required onChange={this.onChangeHandler}>
                                     <option>Choose...</option>
-                                    <option>Properties</option>
-                                    <option>Auto</option>
-                                    <option>Electronic</option>
-                                    <option>Clothes</option>
-                                    <option>Toys</option>
-                                    <option>Home</option>
-                                    <option>Garden</option>
+                                    <option>properties</option>
+                                    <option>auto</option>
+                                    <option>electronics</option>
+                                    <option>clothes</option>
+                                    <option>toys</option>
+                                    <option>home</option>
+                                    <option>garden</option>
                                 </Form.Control>
                             </Form.Group>
 
