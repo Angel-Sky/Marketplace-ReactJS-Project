@@ -11,3 +11,12 @@ form {
 .btnAuth {
     margin-top: 3%;
 }
+
+.bottom-msg-paragraph {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.bottom-msg-paragraph a:hover {
+    text-decoration: underline;
+}

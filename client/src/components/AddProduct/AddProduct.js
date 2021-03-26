@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Form, Button, Col, Spinner } from 'react-bootstrap';
 import SimpleSider from '../Siders/SimpleSider';
-import style from './AddProduct.module.css';
+import './AddProduct.css';
 import { createProduct } from '../../services/productService';
 
 class AddProduct extends Component {
@@ -53,7 +53,7 @@ class AddProduct extends Component {
             <>
                 <SimpleSider />
                 <div className='container'>
-                    <h1 className={style.heading}>Add a Product</h1>
+                    <h1 className="heading">Add a Product</h1>
                     <Form onSubmit={this.onSubmitHandler}>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridTitle">

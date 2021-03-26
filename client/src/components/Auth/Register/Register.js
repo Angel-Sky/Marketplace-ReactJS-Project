@@ -1,4 +1,5 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import SimpleSider from '../../Siders/SimpleSider';
 import '../auth.css';
 
@@ -21,7 +22,12 @@ function Register() {
                         <Form.Label>Reepeat Password</Form.Label>
                         <Form.Control type="repeatPassword" placeholder="Repeat password" required />
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Telephone Number</Form.Label>
+                        <Form.Control type="telephone" placeholder="+359 888 888 888" required />
+                    </Form.Group>
                     <Button variant="dark" className="col-lg-12 btnAuth" type="submit">Sign Up</Button>
+                    <p className="bottom-msg-paragraph">Already have an account? <Link to="/auth/login">Sign In</Link>!</p>
                 </Form>
             </div>
         </>
