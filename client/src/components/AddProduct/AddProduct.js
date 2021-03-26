@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, Spinner } from 'react-bootstrap';
 import SimpleSider from '../Siders/SimpleSider';
 import style from './AddProduct.module.css';
 import { createProduct } from '../../services/productService';
@@ -7,16 +7,14 @@ import { createProduct } from '../../services/productService';
 class AddProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = { title: "", price: "", description: "", city: "", category: "", image: "" };
+        this.state = { title: "", price: "", description: "", city: "", category: "", image: "", loading: false };
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
 
     onChangeHandler(e) {
         e.preventDefault();
-
         this.setState({ [e.target.name]: e.target.value });
-
         if (e.target.files) {
             this.setState({ image: e.target.files[0] })
         }
@@ -25,8 +23,10 @@ class AddProduct extends Component {
     onSubmitHandler(e) {
         e.preventDefault();
         let { title, price, description, city, category, image } = this.state;
-        let obj = { title, price, description, city, category, addedAt: new Date() }
-
+        let obj = { title, price, description, city, category }
+        this.setState({
+            loading: true,
+        })
         this.getBase64(image)
             .then((data) => {
                 obj['image'] = data;
@@ -97,8 +97,13 @@ class AddProduct extends Component {
                                 <Form.Control name="image" type="file" required onChange={this.onChangeHandler} />
                             </Form.Group>
                         </Form.Row>
-
-                        <Button className="col-lg-12" variant="dark" type="submit">Add product</Button>
+                        {this.state.loading ?
+                            <Button className="col-lg-12" variant="dark" disabled >
+                                Please wait... <Spinner animation="border" />
+                            </Button>
+                            :
+                            <Button className="col-lg-12" variant="dark" type="submit">Add product</Button>
+                        }
                     </Form>
                 </div>
             </>
