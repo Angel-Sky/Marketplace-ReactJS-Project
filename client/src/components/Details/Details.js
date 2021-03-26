@@ -11,14 +11,14 @@ import './Aside/Aside.css';
 
 function Details({ match }) {
     let productId = match.params.id;
-    let category = match.params.category;
+    // let category = match.params.category;
     let [product, setProduct] = useState([])
 
     useEffect(() => {
-        getSpecific(category, productId)
+        getSpecific(productId)
             .then(res => setProduct(res))
             .catch(err => console.log(err))
-    }, [productId, category])
+    }, [productId])
 
     return (
         <>
