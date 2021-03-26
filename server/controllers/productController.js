@@ -67,11 +67,12 @@ router.post('/', async (req, res) => {
         if (!image.includes('image')) throw { message: 'The uploaded file should be an image' };
         const uploadResponse = await cloudinary.uploader.upload(image, {
             upload_preset: 'pza5zln6',
-        });
-
+        }, {quality: "auto"});
+        let imageUrl = uploadResponse.url;
+        let index = (imageUrl.indexOf('upload/')) + 6;
         let product = new Product({
             title, price, description, city, category,
-            image: uploadResponse.url,
+            image: imageUrl.substring(0, index) + "/c_fit,q_auto,f_auto,w_800" + imageUrl.substring(index),
             addedAt: uploadResponse.created_at
         })
 
