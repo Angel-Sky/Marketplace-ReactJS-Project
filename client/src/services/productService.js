@@ -22,4 +22,8 @@ export async function createProduct(product) {
     })).json();
 }
 
+export async function editProduct(id) {
+    
+}
+
 

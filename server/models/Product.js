@@ -28,6 +28,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    city: {
+        type: String,
+        required: ['City is required']
+    },
     image: {
         type: String,
         required: true,

@@ -7,6 +7,7 @@ import Categories from './components/Home/Categories/Categories';
 import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 import Details from './components/Details/Details';
+import Edit from './components/Edit/Edit';
 import AddProduct from './components/AddProduct/AddProduct'
 import Footer from './components/Footer/Footer';
 import Error404 from './components/Error404/Error404';
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" exact component={Categories} />
             <Route path="/categories/:category" exact component={Categories} />
             <Route path="/categories/:category/:id/details" component={Details} />
+            <Route path="/categories/:category/:id/edit" component={Edit} />
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/register" exact component={Register} />
             <Route path='/add-product' exact component={AddProduct} />;

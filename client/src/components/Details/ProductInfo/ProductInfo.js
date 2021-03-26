@@ -9,7 +9,7 @@ function ProductInfo({ params }) {
         <>
             <Image className="col-lg-12" src={params.image} rounded />
             <Row>
-                <h1 className="col-lg-10 col-sm-10 heading">{params.title}</h1>
+                <h1 className="col-lg-10 col-sm-10 product-info-heading">{params.title}</h1>
                 <Link to="" id="heartIconDetails" className="col-lg-1 col-sm-1"><BsHeart /></Link>
             </Row>
             <div id="detailsCardText" className="col-lg-12">

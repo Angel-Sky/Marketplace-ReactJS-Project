@@ -7,3 +7,13 @@
     margin-right: 5px;
     margin-bottom: 3px;
 }
+
+#product-price-heading {
+    display: inline;
+}
+
+#edit-icon svg {
+    margin-bottom: 7px;
+    margin-left: 7%;
+    font-size: 15pt;
+}
