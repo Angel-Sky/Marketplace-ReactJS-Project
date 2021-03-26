@@ -1,5 +1,5 @@
 #sider {
-    background-image: url('http://store.picbg.net/pubpic/46/C5/4241166cd1c646c5.jpg');
+    background-image: url('https://res.cloudinary.com/silenceiv/image/upload/v1616775706/4241166cd1c646c5_lwdbpm.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,11 +14,11 @@
     border-radius: 50px;
     border: 1px;
     font-size: 18pt;
-    background-image: url(https://cdn.icon-icons.com/icons2/2066/PNG/512/search_icon_125165.png);
+    background-image: url('https://res.cloudinary.com/silenceiv/image/upload/v1616775441/search-icon_i5dy7o.png');
     background-repeat: no-repeat;
     height: 55px;
     padding-left: 68px;
     background-position: left;
-    background-size: 40px;
-    background-position-x: 15px;
+    background-size: 31px;
+    background-position-x: 17px;
 }
