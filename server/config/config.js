@@ -4,7 +4,10 @@ const config = {
     DB_CONNECTION: `mongodb://localhost/${TABLE_NAME}`,
     SECRET: 'badumts',
     SALT: 10,
-    COOKIE_NAME: 'USER_SESSION'
+    COOKIE_NAME: 'USER_SESSION',
+    CLOUDINARY_NAME: 'silenceiv',
+    CLOUDINARY_API_KEY: 626847416757451,
+    CLOUDINARY_API_SECRET: '3NzQ5GbrcSjW0EERTJd5XZvfcT8'
 }
 
 module.exports = config;

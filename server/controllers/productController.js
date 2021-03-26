@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const router = Router();
+const { cloudinary } = require('../config/cloudinary');
+
 const productService = require('../services/productService');
 const Product = require('../models/Product');
 
@@ -31,8 +33,8 @@ router.get('/:category/:id', (req, res) => {
             })
             .catch(err => console.log(err))
         return;
-    } 
-    
+    }
+
     if (currentCategory !== 'undefined' && currentCategory !== 'all') {
         Product.find({ category: currentCategory })
             .then(products => {
@@ -52,14 +54,26 @@ router.get('/:category/:id', (req, res) => {
 
 router.post('/', async (req, res) => {
     let { title, price, description, city, category, image, addedAt } = req.body;
-    // let product = new Product({ title, price, description, city, category, image, addedAt })
     console.log(req.body)
-    // product.save()
-        // .then(r => {
-        //     console.log(r);
-            res.status(201).json({ movieId: true});
-        // })
-        // .catch(err => console.error(err))
+    try {
+        const uploadResponse = await cloudinary.uploader.upload(image, {
+            upload_preset: 'pza5zln6',
+        });
+
+        let product = new Product({
+            title, price, description, city, category,
+            image: uploadResponse.url,
+            addedAt: uploadResponse.created_at
+        })
+       
+        await product.save()
+
+        res.status(201).json({ movieId: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+
     // if (total <= 0) throw { message: 'Total should be a positive number' };
 
     // let productData = {
