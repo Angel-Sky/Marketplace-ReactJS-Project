@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const { cloudinary } = require('../config/cloudinary');
 
-const productService = require('../services/productService');
 const Product = require('../models/Product');
 
 router.get('/', (req, res) => {

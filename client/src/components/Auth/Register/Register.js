@@ -1,32 +1,89 @@
-import { Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Form, Button, Col, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { registerUser } from '../../../services/authService';
 import SimpleSider from '../../Siders/SimpleSider';
 import '../auth.css';
 
-function Register() {
+function Register({ history }) {
+    const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState({
+        name: null,
+        lastName: null,
+        gender: null,
+        phoneNumber: '',
+        email: "",
+        password: "",
+        repeatPassword: ""
+    });
+
+    const handleChanges = (e) => {
+        e.preventDefault();
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmitReg = (e) => {
+        e.preventDefault();
+        console.log(userData)
+        setLoading(true);
+        registerUser(userData)
+            .then(res => history.push('/'))
+    }
+
     return (
         <>
             <SimpleSider />
             <div className="container auth-form">
                 <h1 className="auth-heading">Sign Up</h1>
-                <Form className="col-lg-6">
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" required />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" required />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Reepeat Password</Form.Label>
-                        <Form.Control type="repeatPassword" placeholder="Repeat password" required />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Telephone Number</Form.Label>
-                        <Form.Control type="telephone" placeholder="+359 888 888 888" required />
-                    </Form.Group>
-                    <Button variant="dark" className="col-lg-12 btnAuth" type="submit">Sign Up</Button>
+                <Form className="col-lg-8" onSubmit={handleSubmitReg}>
+                    <Form.Row>
+                        <Form.Group controlId="forName" className="col-lg-4">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" name="name" placeholder="Ivan" onChange={handleChanges} />
+                        </Form.Group>
+                        <Form.Group controlId="forLastName" className="col-lg-4">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" name="lastName" placeholder="Ivanov" onChange={handleChanges} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formGridGender" className="col-lg-4">
+                            <Form.Label>Gender</Form.Label>
+                            <Form.Control as="select" defaultValue="not specified" name="gender" onChange={handleChanges}>
+                                <option>male</option>
+                                <option>female</option>
+                                <option>not specified</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group className="col-lg-12">
+                            <Form.Label>Phone Number *</Form.Label>
+                            <Form.Control type="text" name="phoneNumber" placeholder="+359888888888" onChange={handleChanges} required />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group controlId="formBasicEmail" className="col-lg-12">
+                            <Form.Label>Email address *</Form.Label>
+                            <Form.Control type="email" name="email" placeholder="ivan@abv.bg" onChange={handleChanges} required />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group controlId="formBasicPassword" className="col-lg-6">
+                            <Form.Label>Password *</Form.Label>
+                            <Form.Control type="password" name="password" placeholder="Password" onChange={handleChanges} required />
+                        </Form.Group>
+                        <Form.Group className="col-lg-6">
+                            <Form.Label>Reepeat Password *</Form.Label>
+                            <Form.Control type="password" name="repeatPassword" placeholder="Repeat password" onChange={handleChanges} required />
+                        </Form.Group>
+                    </Form.Row>
+                    {loading ?
+                        <Button className="col-lg-12 btnAuth" variant="dark" disabled >
+                            Please wait... <Spinner animation="border" />
+                        </Button>
+                        :
+                        <Button variant="dark" className="col-lg-12 btnAuth" type="submit">Sign Up</Button>
+                    }
+
                     <p className="bottom-msg-paragraph">Already have an account? <Link to="/auth/login">Sign In</Link>!</p>
                 </Form>
             </div>

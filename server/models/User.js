@@ -4,15 +4,40 @@ const { SALT } = require('../config/config')
 
 const userSchema = new mongoose.Schema({
     id: mongoose.Types.ObjectId,
+    name: {
+        type: String,
+        trim: true,
+        default: null
+    },
+    lastName: {
+        type: String,
+        trim: true,
+        default: null 
+    },
     email: {
         type: String,
-        required: ['Email is required'],
-        unique: true
+        trim: true,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required',
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     password: {
         type: String,
+        trim: true,
         required: ['Password is required'],
-        minlength: [4, 'Password should be at least 4 characters long']
+        minlength: [8, 'Password should be at least 8 characters long']
+    },
+    phoneNumber: {
+        type: String,
+        trim: true,
+        required: ['Phone number is required'],
+        match: [/(\+)?(359|0)8[789]\d{1}(|-| )\d{3}(|-| )\d{3}/, 'Please fill a valid phone number']
+    },
+    gender: {
+        type: String,
+        trim: true,
+        default: null
     },
     createdSells: [
         {
