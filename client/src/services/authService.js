@@ -11,7 +11,7 @@ export async function registerUser(userData) {
 }
 
 export async function loginUser(userData) {
-    return (await fetch(`/login`, {
+    return (await fetch(`/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
