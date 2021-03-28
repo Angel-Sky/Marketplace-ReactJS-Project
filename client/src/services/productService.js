@@ -22,8 +22,15 @@ export async function createProduct(product) {
     })).json();
 }
 
-export async function editProduct(id) {
-    
+export async function editProduct(id, product) {
+    return (await fetch(`${baseUrl}/products/edit/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product)
+    })).json();
 }
+
 
 

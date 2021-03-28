@@ -56,8 +56,14 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/edit/:id', (req, res) => {
-
+router.patch('/edit/:id', async (req, res) => {
+    try {
+        await Product.updateOne({ _id: req.params.id }, req.body);
+        res.status(200).json({ message: 'Updated!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }   
 })
 
 module.exports = router;
