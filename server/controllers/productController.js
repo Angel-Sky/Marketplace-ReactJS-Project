@@ -33,7 +33,7 @@ router.get('/specific/:id', (req, res) => {
 
 router.post('/', async (req, res) => {
     let { title, price, description, city, category, image } = req.body;
-    console.log(req.body)
+
     try {
         if (!image.includes('image')) throw { message: 'The uploaded file should be an image' };
         const uploadResponse = await cloudinary.uploader.upload(image, {
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 
         await product.save()
 
-        res.status(201).json({ movieId: true });
+        res.status(201).json({ movieId: product._id });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.message });

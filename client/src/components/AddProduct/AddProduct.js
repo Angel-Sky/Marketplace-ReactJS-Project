@@ -32,7 +32,7 @@ class AddProduct extends Component {
                 obj['image'] = data;
                 createProduct(obj)
                     .then(res => {
-                        this.props.history.push('/')
+                        this.props.history.push(`/categories/${category}/${res.movieId}/details`)
                     })
                     .catch(err => console.log(err))
             })
