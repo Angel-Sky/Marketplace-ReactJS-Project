@@ -27,7 +27,15 @@ function Register({ history }) {
         console.log(userData)
         setLoading(true);
         registerUser(userData)
-            .then(res => history.push('/'))
+            .then(res => {
+                console.log(res)
+                if (!res.error) {
+                    history.push('/auth/login')
+                } else {
+                    setLoading(false);
+                    console.log(res.error)
+                }
+            })
     }
 
     return (

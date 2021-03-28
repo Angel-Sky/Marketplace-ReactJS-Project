@@ -9,3 +9,13 @@ export async function registerUser(userData) {
         body: JSON.stringify(userData)
     })).json();
 }
+
+export async function loginUser(userData) {
+    return (await fetch(`${baseUrl}/auth/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    })).json();
+}

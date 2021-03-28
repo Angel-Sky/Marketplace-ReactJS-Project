@@ -13,23 +13,23 @@ router.post('/register', async (req, res) => {
         console.log(error)
         res.status(404).json({ error: error.message })
     }
-    // res.status(200).json({ok: true})
 });
 
 router.post('/login', (req, res) => {
     authService.loginUser(req.body)
         .then(token => {
-            res.cookie(COOKIE_NAME, token, { httpOnly: true });
-
             jwt.verify(token, SECRET, (err, decoded) => {
                 if (err) {
                     res.clearCookie(COOKIE_NAME);
                 } else {
-                    res.status(200).json(decoded);
+                    res
+                        .status(200)
+                        .cookie(COOKIE_NAME, token, { sameSite: 'none', secure: true })
+                        .json({ user: decoded })
                 }
             })
-
-        }).catch((error) => res.status(500).json(error))
+        })
+        .catch(error => res.status(500).json({ error: error }))
 });
 
 router.get('/logout', (req, res) => {
