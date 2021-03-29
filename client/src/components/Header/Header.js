@@ -41,7 +41,7 @@ function Header() {
 
                             <NavDropdown.Divider />
 
-                            <NavLink className="dropdown-item" to="/logout">
+                            <NavLink className="dropdown-item" to="/auth/logout">
                                 <IoLogOut />Log out
                             </NavLink>
                         </NavDropdown>

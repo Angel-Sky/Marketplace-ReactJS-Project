@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const { cloudinary } = require('../config/cloudinary');
-
+const isAuth = require('../middlewares/isAuth')
 const Product = require('../models/Product');
 
 router.get('/', (req, res) => {
@@ -30,7 +30,7 @@ router.get('/specific/:id', (req, res) => {
         .catch(err => console.log(err))
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAuth, async (req, res) => {
     let { title, price, description, city, category, image } = req.body;
 
     try {
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/edit/:id', async (req, res) => {
+router.patch('/edit/:id', isAuth, async (req, res) => {
     try {
         await Product.updateOne({ _id: req.params.id }, req.body);
         res.status(200).json({ message: 'Updated!' });

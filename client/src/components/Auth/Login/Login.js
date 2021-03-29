@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Context } from '../../../ContextStore';
 import { loginUser } from '../../../services/authService'
 import { Form, Button, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -7,23 +8,25 @@ import '../auth.css';
 
 function Login({ history }) {
     const [loading, setLoading] = useState(false);
-    const [userData, setUserData] = useState({
+    const [user, setUser] = useState({
         email: "",
         password: ""
     });
+    const [userData, setUserData] = useContext(Context)
 
     const handleChanges = (e) => {
         e.preventDefault();
-        setUserData({ ...userData, [e.target.name]: e.target.value });
+        setUser({ ...user, [e.target.name]: e.target.value });
     }
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
         setLoading(true);
-        loginUser(userData)
+        loginUser(user)
             .then(res => {
-                console.log(res)
+                console.log(res.user)
                 if (!res.error) {
+                    setUserData(res.user)
                     history.push('/')
                 } else {
                     setLoading(false);
