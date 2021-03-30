@@ -41,7 +41,8 @@ class AddProduct extends Component {
                             console.log(res.message)
                             this.setState({loading: false})
                         } else {
-                            this.props.history.push(`/categories/${category}/${res.movieId}/details`)
+                            console.log(res)
+                            this.props.history.push(`/categories/${category}/${res.productId}/details`)
                         }
                     })
                     .catch(err => console.log(err))

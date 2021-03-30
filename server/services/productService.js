@@ -1,36 +1,57 @@
 const Product = require('../models/Product');
 const User = require('../models/User');
+const { cloudinary } = require('../config/cloudinary');
+const { CLOUDINARY_STORAGE } = require('../config/config');
 
-async function create(data, userId) {
-    let product = new Product({ ...data, creator: userId })
-    await product.save();
-   
-    return await User.updateOne({ _id: userId }, { $push: { createdSells: product } });
+async function getAll() {
+    return await Product.find();
 }
 
-async function getAll(userId) {
-    return await Product.find({ creator: userId }).lean();
+async function findByCategory(category) {
+    return await Product.find({ category: category })
 }
 
-async function getSpecific(id, userId) {
-    let product = await Product.findById(id).lean();
-    return product;
+async function findById(id) {
+    return await Product.findById(id);
 }
 
-async function update(id, data) {
+async function edit(id, data) {
     return await Product.updateOne({ _id: id }, data);
 }
 
-async function deleteExpense(id, userId) {
-    await Product.deleteOne({ _id: id });
-    await User.updateOne({ _id: userId }, { $pull: { createdSells: id } });
-    return;
+async function create(data, userId) {
+    let product = new Product({...data})
+    await product.save();
+
+    return await User.updateOne({ _id: userId }, { $push: { createdSells: product } });
+}
+
+async function uploadImage(image) {
+    const uploadResponse = await cloudinary.uploader.upload(image, {
+        upload_preset: CLOUDINARY_STORAGE,
+    }, { quality: "auto" });
+
+    let imageUrl = uploadResponse.url;
+    let index = (imageUrl.indexOf('upload/')) + 6;
+
+    let compressedImg = imageUrl
+        .substring(0, index) +
+        "/c_fit,q_auto,f_auto,w_800" +
+        imageUrl.substring(index);
+
+    return compressedImg;
+}
+
+async function userCollectionUpdate(userId, product) {
+    return await User.updateOne({ _id: userId }, { $push: { createdSells: product } });
 }
 
 module.exports = {
     create,
     getAll,
-    getSpecific,
-    update,
-    deleteExpense,
+    findByCategory,
+    findById,
+    edit,
+    uploadImage,
+    userCollectionUpdate
 }

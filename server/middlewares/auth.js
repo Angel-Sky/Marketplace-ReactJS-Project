@@ -10,7 +10,6 @@ const auth = () => {
                     res.clearCookie(COOKIE_NAME);
                 } else {
                     req.user = decoded;
-                    req.user.isAuthenticated = true;
                 }
             })
         }

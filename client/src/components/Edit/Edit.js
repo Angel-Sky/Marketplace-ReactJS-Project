@@ -35,12 +35,7 @@ function Edit({ match, history }) {
         }
         editProduct(_id, obj)
             .then(res => {
-                if (res.message) {
-                    console.log(res.message)
-                    setLoading(false)
-                } else {
-                    history.push(`/categories/${category}/${_id}/details`)
-                }
+                history.push(`/categories/${category}/${_id}/details`)
             })
             .catch(err => console.log(err))
     }
