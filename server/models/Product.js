@@ -52,10 +52,10 @@ const productSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    // seller: {
-    //     type: mongoose.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    seller: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+    },
     likes: [
         {
             type: mongoose.Schema.Types.ObjectId,

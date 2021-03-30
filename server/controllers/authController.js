@@ -22,6 +22,7 @@ router.post('/login', (req, res) => {
                 if (err) {
                     res.clearCookie(COOKIE_NAME);
                 } else {
+                    req.user = decoded;
                     res
                         .status(200)
                         .cookie(COOKIE_NAME, token, { sameSite: 'none', secure: true })

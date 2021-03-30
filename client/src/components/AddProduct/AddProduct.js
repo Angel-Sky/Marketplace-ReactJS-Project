@@ -16,7 +16,12 @@ class AddProduct extends Component {
         e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         if (e.target.files) {
-            this.setState({ image: e.target.files[0] })
+            if (e.target.files[0].type.includes('image/')) {
+                this.setState({ image: e.target.files[0] })
+            } else {
+                //TODO sent it to client
+                console.log("The file should be image")
+            }
         }
     };
 
@@ -34,9 +39,7 @@ class AddProduct extends Component {
                     .then(res => {
                         if (res.message) {
                             console.log(res.message)
-                            this.setState({
-                                loading: false,
-                            })
+                            this.setState({loading: false})
                         } else {
                             this.props.history.push(`/categories/${category}/${res.movieId}/details`)
                         }

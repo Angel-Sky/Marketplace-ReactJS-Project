@@ -6,6 +6,7 @@ export async function registerUser(userData) {
         headers: {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(userData)
     })).json();
 }
@@ -16,10 +17,11 @@ export async function loginUser(userData) {
         headers: {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(userData)
     })).json();
 }
 
 export async function checkUser() {
-    return await (await fetch(baseUrl + '/auth/checkUser')).json()
+    return await (await fetch(baseUrl + '/auth/checkUser', {credentials: 'include'})).json()
 }
