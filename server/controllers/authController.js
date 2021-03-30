@@ -39,11 +39,8 @@ router.get('/logout', (req, res) => {
 
 router.get('/checkUser', (req, res) => {
     console.log(req.user)
-    if (req.user) {
-        return res.status(200).json(req.user)
-    } else {
-        return res.status(200).json({ message: 'No user found' })
-    }
+    if (req.user) return res.status(200).json({user: req.user})
+    return res.status(200).json({message: "Not loged in"})
 })
 
 
