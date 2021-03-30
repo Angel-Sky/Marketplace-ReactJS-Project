@@ -45,14 +45,14 @@ function Register({ history }) {
                 <h1 className="auth-heading">Sign Up</h1>
                 <Form className="col-lg-8" onSubmit={handleSubmitReg}>
                     <Form.Row>
-                        <Form.Group controlId="forName" className="col-lg-4">
+                        <Form.Group controlId="forName" className="col-lg-8">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" placeholder="Ivan" onChange={handleChanges} />
+                            <Form.Control type="text" name="name" placeholder="Ivan Ivanov" onChange={handleChanges} />
                         </Form.Group>
-                        <Form.Group controlId="forLastName" className="col-lg-4">
+                        {/* <Form.Group controlId="forLastName" className="col-lg-4">
                             <Form.Label>Last Name</Form.Label>
                             <Form.Control type="text" name="lastName" placeholder="Ivanov" onChange={handleChanges} />
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group as={Col} controlId="formGridGender" className="col-lg-4">
                             <Form.Label>Gender</Form.Label>
                             <Form.Control as="select" defaultValue="not specified" name="gender" onChange={handleChanges}>

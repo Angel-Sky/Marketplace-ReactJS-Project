@@ -3,6 +3,8 @@ const router = Router();
 const { cloudinary } = require('../config/cloudinary');
 const isAuth = require('../middlewares/isAuth')
 const Product = require('../models/Product');
+const User = require('../models/User');
+
 const productService = require('../services/productService');
 
 router.get('/', async (req, res) => {
@@ -63,5 +65,14 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 })
+
+router.get('/sells/:id', async (req, res) => {
+    try {
+        let user = await User.findById(req.user._id).populate('createdSells');
+        res.status(200).json({ sells: user.createdSells });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
 
 module.exports = router;

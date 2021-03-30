@@ -14,7 +14,7 @@ export const ContextStore = ({ children }) => {
                     return setUserData(res.user)
                 })
         }
-    }, [])
+    }, [cookies.USER_SESSION])
 
     console.log(userData)
     const providerValue = useMemo(() => ({ userData, setUserData }), [userData, setUserData])

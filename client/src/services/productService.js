@@ -34,5 +34,9 @@ export async function editProduct(id, product) {
     })).json();
 }
 
+export async function getUserSells() {
+    return (await fetch(`/products/sells/getSells`)).json();
+}
+
 
 

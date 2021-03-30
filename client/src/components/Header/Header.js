@@ -34,7 +34,7 @@ function Header() {
 
                                 <NavDropdown.Divider />
 
-                                <NavLink className="dropdown-item" to="/sells">
+                                <NavLink className="dropdown-item" to="/your-sells">
                                     <BsFillGridFill />Sells
                             </NavLink>
                                 <NavLink className="dropdown-item" to="/messages">
