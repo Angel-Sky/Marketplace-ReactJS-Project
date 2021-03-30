@@ -19,3 +19,7 @@ export async function loginUser(userData) {
         body: JSON.stringify(userData)
     })).json();
 }
+
+export async function checkUser() {
+    return await (await fetch(baseUrl + '/auth/checkUser')).json()
+}

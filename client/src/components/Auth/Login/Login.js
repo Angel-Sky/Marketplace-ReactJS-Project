@@ -12,7 +12,7 @@ function Login({ history }) {
         email: "",
         password: ""
     });
-    const [userData, setUserData] = useContext(Context)
+    const {userData, setUserData} = useContext(Context)
 
     const handleChanges = (e) => {
         e.preventDefault();
@@ -24,7 +24,6 @@ function Login({ history }) {
         setLoading(true);
         loginUser(user)
             .then(res => {
-                console.log(res.user)
                 if (!res.error) {
                     setUserData(res.user)
                     history.push('/')

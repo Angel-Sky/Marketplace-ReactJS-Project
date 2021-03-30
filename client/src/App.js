@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import ContextStore from './ContextStore';
 import Header from './components/Header/Header';
 import Categories from './components/Home/Categories/Categories';
 import Login from './components/Auth/Login/Login';
@@ -15,7 +14,7 @@ import LogOut from './components/Auth/LogOut';
 
 function App() {
    return (
-      <ContextStore>
+      <>
          <Header />
          <Switch>
             <Route path="/" exact component={Categories} />
@@ -29,7 +28,7 @@ function App() {
             <Route component={Error404} />
          </Switch>
          <Footer />
-      </ContextStore>
+      </>
    );
 }
 

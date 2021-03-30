@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useMemo } from 'react';
 
-export const Context = React.createContext()
+export const Context = React.createContext();
 
-const ContextStore = ({ children }) => {
-    const [userData, setUserData] = useState({
-        _id: 0,
-        email: '',
-        phone: ''
-    })
-    console.log(userData)
+export const ContextStore = ({ children }) => {
+    const [userData, setUserData] = useState(null)
+    const providerValue = useMemo(() => ({userData, setUserData}), [userData, setUserData])
+
     return (
-        <Context.Provider value={[userData, setUserData]}>
+        <Context.Provider value={providerValue}>
             {children}
         </Context.Provider>
     )
 }
-
-export default ContextStore;

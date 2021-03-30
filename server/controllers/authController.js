@@ -37,5 +37,14 @@ router.get('/logout', (req, res) => {
     res.status(200).json({ message: 'Successfully logged out' })
 });
 
+router.get('/checkUser', (req, res) => {
+    console.log(req.user)
+    if (req.user) {
+        return res.status(200).json(req.user)
+    } else {
+        return res.status(200).json({ message: 'No user found' })
+    }
+})
+
 
 module.exports = router;

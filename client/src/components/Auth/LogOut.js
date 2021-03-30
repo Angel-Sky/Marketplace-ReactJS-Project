@@ -1,6 +1,12 @@
-export default function LogOut({history}) {
+import { useContext } from 'react';
+import { Context } from '../../ContextStore';
+
+function LogOut({ history }) {
     fetch('/auth/logout')
         .then(res => res.json())
-        .then(() => history.push('/'))
+        .then(res => {
+            history.push('/')
+        })
 }
 
+export default LogOut;
