@@ -4,7 +4,7 @@ import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 function ProductInfo({ params }) {
-    let [key, setKey] = useState('home');
+    console.log(params)
     return (
         <>
             <Image className="col-lg-12" src={params.image} rounded />
@@ -13,18 +13,16 @@ function ProductInfo({ params }) {
                 <Link to="" id="heartIconDetails" className="col-lg-1 col-sm-1"><BsHeart /></Link>
             </Row>
             <div id="detailsCardText" className="col-lg-12">
-                <Tabs id="controlled-tab-example" activeKey={key}
-                    onSelect={(k) => setKey(k)}
-                >
+                <Tabs defaultActiveKey="details" transition={false} id="noanim-tab-example">
                     <Tab eventKey="details" title="Details">
                         {params.description}
                         <hr />
                         <p>Product listed at {params.addedAt}</p>
                     </Tab>
                     <Tab eventKey="aboutSeller" title="About seller">
-                        <p>Name: Pesho</p>
-                        <p>Email: pesho@abv.bg</p>
-                        <p>Telephone: +359 882 218 816</p>
+                        <p>Name: {params.name || "Not specified"}</p>
+                        <p>Email: {params.email}</p>
+                        <p>Telephone: {params.phone}</p>
                         <p>City: {params.city}</p>
                     </Tab>
                 </Tabs>

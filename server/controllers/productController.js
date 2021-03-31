@@ -27,8 +27,16 @@ router.get('/:category', async (req, res) => {
 
 router.get('/specific/:id', async (req, res) => {
     try {
-        let product = await (await productService.findById(req.params.id)).toJSON();
-        res.status(200).json({ ...product, isSeller: Boolean(req.user._id == product.seller) });
+        let product = await (await Product.findById(req.params.id)).toJSON()
+        let seller = await (await User.findById(product.seller)).toJSON()
+        
+        res.status(200).json({
+            ...product,
+            name: seller.name,
+            phone: seller.phoneNumber,
+            email: seller.email,
+            isSeller: Boolean(req.user._id == product.seller)
+        });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -61,7 +69,9 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
     try {
         let user = await productService.findUserById(req.user._id);
         let product = await productService.findById(req.params.id);
-        if (user._id !== product.seller) throw { message: 'You have no permission to perform this action' };
+        if (user._id.toString() !== product.seller.toString()) {
+            throw { message: 'You have no permission to perform this action' };
+        }
 
         await productService.edit(req.params.id, req.body);
         res.status(200).json({ message: 'Updated!' });
@@ -72,7 +82,7 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
 
 router.get('/sells/:id', async (req, res) => {
     try {
-        let user = await User.findById(req.user._id).populate('createdSells');
+        let user = await (await User.findById(req.user._id).populate('createdSells')).toJSON();
         res.status(200).json({ sells: user.createdSells });
     } catch (error) {
         res.status(500).json({ message: error.message })

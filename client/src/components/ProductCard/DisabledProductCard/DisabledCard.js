@@ -12,6 +12,7 @@ function DisabledCard({ params, history }) {
         e.preventDefault();
         activateSell(params._id)
             .then(res => {
+                history.push(`/categories/${params.category}/${params._id}/details`)
                 setShow(false);
             })
     }

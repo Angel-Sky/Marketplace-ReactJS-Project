@@ -1,6 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
-import { Context } from '../../ContextStore';
-
+import { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import SimpleSider from '../Siders/SimpleSider';
 import Breadcrumb from './Breadcrumb'
@@ -13,18 +11,15 @@ import './Aside/Aside.css';
 
 function Details({ match, history }) {
     let productId = match.params.id;
-    // let category = match.params.category;
     let [product, setProduct] = useState([])
-    let { userData, setUserData } = useContext(Context)
     let [loading, setLoading] = useState(true);
-    let [isAuthor, setIsAuthor] = useState(false);
-
+   
     useEffect(() => {
         getSpecific(productId)
             .then(res => setProduct(res), setLoading(false))
             .catch(err => console.log(err))
     }, [productId, setProduct, setLoading])
-    console.log(product._doc)
+   
     return (
         <>
             <SimpleSider />
