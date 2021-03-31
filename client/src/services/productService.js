@@ -46,5 +46,13 @@ export async function archiveSell(id) {
     return (await fetch(`/products/archive/${id}`)).json()
 }
 
+export async function wishProduct(id) {
+    return (await fetch(`${baseUrl}/products/wish/${id}`, {credentials: 'include'})).json();
+}
+
+export async function unwishProduct(id) {
+    return (await fetch(`${baseUrl}/products/unwish/${id}`, {credentials: 'include'})).json();
+}
+
 
 

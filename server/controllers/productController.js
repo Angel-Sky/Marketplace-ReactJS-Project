@@ -29,13 +29,15 @@ router.get('/specific/:id', async (req, res) => {
     try {
         let product = await (await Product.findById(req.params.id)).toJSON()
         let seller = await (await User.findById(product.seller)).toJSON()
+        let user = await User.findById(req.user._id)
         
         res.status(200).json({
             ...product,
             name: seller.name,
             phone: seller.phoneNumber,
             email: seller.email,
-            isSeller: Boolean(req.user._id == product.seller)
+            isSeller: Boolean(req.user._id == product.seller),
+            isWished: user.wishedProducts.includes(req.params.id)
         });
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -106,5 +108,39 @@ router.get('/archive/:id', async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 });
+
+
+router.get('/wish/:id', async (req, res) => {
+    try {
+        let user = await User.findById(req.user._id);
+        
+        if (!user.wishedProducts.includes(req.params.id)) {
+            await User.updateOne({ _id: req.user._id }, { $push: { wishedProducts: req.params.id } })
+            await Product.updateOne({ _id: req.params.id }, { $push: { likes: user }});
+
+            res.status(200).json({ msg: "wished" });
+        } else {
+            await User.updateOne({ _id: req.user._id }, { $pull: { wishedProducts: req.params.id } })
+            await Product.updateOne({ _id: req.params.id }, { $pull: { likes: req.user._id }});
+
+            res.status(200).json({ msg: "unwished" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
+
+// router.get('/unwish/:id', async (req, res) => {
+//     try {
+//         let user = await User.findById(req.user._id);
+        
+//         if (user.wishedProducts.includes(req.params.id)) {
+           
+//         }
+//         res.status(200).json({ msg: "wished" });
+//     } catch (error) {
+//         res.status(500).json({ message: error.message })
+//     }
+// });
 
 module.exports = router;
