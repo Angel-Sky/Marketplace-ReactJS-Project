@@ -9,7 +9,7 @@ import { getSpecific } from '../../services/productService'
 import './ProductInfo/ProductInfo.css';
 import './Aside/Aside.css';
 
-function Details({ match }) {
+function Details({ match, history }) {
     let productId = match.params.id;
     // let category = match.params.category;
     let [product, setProduct] = useState([])
@@ -30,7 +30,7 @@ function Details({ match }) {
                         <ProductInfo params={product} />
                     </Col>
                     <Col lg={4}>
-                        <Aside params={product} />
+                        <Aside params={product} history={history} />
                     </Col>
                 </Row>
             </div>

@@ -84,7 +84,7 @@ router.get('/enable/:id', async (req, res) => {
     }
 });
 
-router.get('/disable/:id', async (req, res) => {
+router.get('/archive/:id', async (req, res) => {
     try {
         let product = await Product.updateOne({ _id: req.params.id }, {active: false});
         res.status(200).json({ msg: "Archived" });

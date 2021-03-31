@@ -17,3 +17,10 @@
     margin-left: 7%;
     font-size: 15pt;
 }
+
+#archive-icon svg {
+    font-size: 19pt;
+    margin-bottom: 8px;
+    margin-left: 6px;
+    cursor: pointer;
+}

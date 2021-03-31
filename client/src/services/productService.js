@@ -42,5 +42,9 @@ export async function activateSell(id) {
     return (await fetch(`/products/enable/${id}`)).json()
 }
 
+export async function archiveSell(id) {
+    return (await fetch(`/products/archive/${id}`)).json()
+}
+
 
 
