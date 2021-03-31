@@ -75,4 +75,13 @@ router.get('/sells/:id', async (req, res) => {
     }
 });
 
+router.get('/enable/:id', async (req, res) => {
+    try {
+        let product = await Product.updateOne({ _id: req.params.id }, {active: true});
+        res.status(200).json({ msg: "Activated" });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
+
 module.exports = router;

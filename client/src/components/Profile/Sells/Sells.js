@@ -2,12 +2,13 @@ import { useEffect, useState, useContext } from 'react';
 import { Context } from '../../../ContextStore';
 
 import SimpleSider from '../../Siders/SimpleSider'
-import ProductCard from '../../Home/ProductCard/ProductCard';
+import ProductCard from '../../ProductCard/ProductCard';
+import DisabledCard from '../../ProductCard/DisabledProductCard/DisabledCard';
 import { Col, Row } from 'react-bootstrap';
 import { getUserSells } from '../../../services/productService';
 
 import './Sells.css';
-
+import '../../ProductCard/DisabledProductCard/DisabledCard.css'
 function Sells() {
     const [products, setProduct] = useState([])
     const { userData, setUserData } = useContext(Context)
@@ -18,7 +19,7 @@ function Sells() {
                 setProduct(res.sells)
             })
             .catch(err => console.log(err))
-    }, [setProduct])
+    }, [setProduct, products])
 
     return (
         <>
@@ -41,7 +42,7 @@ function Sells() {
                         .filter(x => x.active == false)
                         .map(x =>
                         <Col xs={12} md={6} lg={3} key={x._id.toString()}>
-                            <ProductCard params={x} />
+                            <DisabledCard params={x} />
                         </Col>
                         )
                     }

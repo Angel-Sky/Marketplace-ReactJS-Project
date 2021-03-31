@@ -1,0 +1,25 @@
+#enableIcon {
+    font-size: 24pt;
+    margin-left: 5%;
+    color: black;
+    cursor: pointer;
+}
+
+.disabled-card img {
+    filter: grayscale(100%);
+}
+
+.disabled-card .card {
+    background-color: #00000024;
+}
+
+.modal-footer a {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.modal-footer a:hover {
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+}
