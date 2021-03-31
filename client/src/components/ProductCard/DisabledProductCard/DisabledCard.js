@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
 import { RiDeviceRecoverFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
-
+import { activateSell } from '../../../services/productService';
 
 function DisabledCard({ params, history }) {
     const [show, setShow] = useState(false);
@@ -11,13 +10,9 @@ function DisabledCard({ params, history }) {
     const handleShow = () => setShow(true);
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`/products/enable/${params._id}`)
-            .then(res => res.json())
+        activateSell(params._id)
             .then(res => {
-                console.log(history)
                 setShow(false);
-                // history.push('/your-sells')
-                // history.push('/')
             })
     }
 
@@ -52,7 +47,6 @@ function DisabledCard({ params, history }) {
                     </Button>
                     <Button variant="success" onClick={handleSubmit}>
                         Make Active
-                        {/* <Link to={`/enable/${params._id}`} onClick={handleClose}>Make Active</Link> */}
                     </Button>
                 </Modal.Footer>
             </Modal>

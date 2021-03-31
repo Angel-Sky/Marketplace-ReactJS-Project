@@ -38,5 +38,9 @@ export async function getUserSells() {
     return (await fetch(`/products/sells/getSells`)).json();
 }
 
+export async function activateSell(id) {
+    return (await fetch(`/products/enable/${id}`)).json()
+}
+
 
 
