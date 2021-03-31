@@ -25,17 +25,21 @@ function Aside({ params, history }) {
                 history.push('/your-sells')
             })
     }
-
+    console.log(params)
     return (
         <aside>
             <div id="priceLabel" className="col-lg-12">
                 <h4 id="product-price-heading">Product Price </h4>
-                <span id="edit-icon">
-                    <Link to={`/categories/${params.category}/${params._id}/edit`}><GrEdit /></Link>
-                </span>
-                <span id="archive-icon" onClick={handleShowArchive}>
-                    <MdArchive />
-                </span>
+                {params.isSeller &&
+                    <>
+                        <span id="edit-icon">
+                            <Link to={`/categories/${params.category}/${params._id}/edit`}><GrEdit /></Link>
+                        </span>
+                        <span id="archive-icon" onClick={handleShowArchive}>
+                            <MdArchive />
+                        </span>
+                    </>
+                }
                 <h1>{params.price} €</h1>
             </div>
             <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
@@ -65,7 +69,7 @@ function Aside({ params, history }) {
                 </Modal.Header>
                 <Modal.Body>
                     <p>
-                    By clicking <strong>Archive</strong>, this sell will change
+                        By clicking <strong>Archive</strong>, this sell will change
                     it's status to <strong>Archived</strong>,
                     which means that no one but you will be able see it.
                     You may want to change the status to <strong>Actived</strong> if you have

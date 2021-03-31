@@ -46,6 +46,10 @@ async function userCollectionUpdate(userId, product) {
     return await User.updateOne({ _id: userId }, { $push: { createdSells: product } });
 }
 
+async function findUserById(id) {
+    return await User.findById(id);
+}
+
 module.exports = {
     create,
     getAll,
@@ -53,5 +57,6 @@ module.exports = {
     findById,
     edit,
     uploadImage,
-    userCollectionUpdate
+    userCollectionUpdate,
+    findUserById
 }
