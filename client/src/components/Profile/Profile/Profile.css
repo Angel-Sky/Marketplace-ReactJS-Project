@@ -1,0 +1,30 @@
+#avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+#profile-head {
+    background-color: #f8f9fa;
+}
+
+.profile-row {
+    padding: 12px;
+}
+
+@media (min-width: 100px) {
+    .col-sm-12 {
+        text-align: center;
+    }
+    #avatar {
+        margin-bottom: 20px;
+    }  
+}
+
+@media (min-width: 840px) {
+    .profile-row, .col-md-3 {
+        text-align: left;
+    }
+    
+}

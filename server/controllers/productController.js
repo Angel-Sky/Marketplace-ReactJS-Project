@@ -85,7 +85,7 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
 router.get('/sells/:id', async (req, res) => {
     try {
         let user = await (await User.findById(req.user._id).populate('createdSells')).toJSON();
-        res.status(200).json({ sells: user.createdSells });
+        res.status(200).json({ sells: user.createdSells, user });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
