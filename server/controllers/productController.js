@@ -130,17 +130,16 @@ router.get('/wish/:id', async (req, res) => {
     }
 });
 
-// router.get('/unwish/:id', async (req, res) => {
-//     try {
-//         let user = await User.findById(req.user._id);
-        
-//         if (user.wishedProducts.includes(req.params.id)) {
-           
-//         }
-//         res.status(200).json({ msg: "wished" });
-//     } catch (error) {
-//         res.status(500).json({ message: error.message })
-//     }
-// });
+router.get('/wishlist/:id', async (req, res) => {
+    console.log(req.user._id)
+    try {
+        let user = await (await User.findById(req.user._id).populate('wishedProducts')).toJSON();
+        console.log(user)
+        res.status(200).json({ wishlist: user.wishedProducts });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
+
 
 module.exports = router;

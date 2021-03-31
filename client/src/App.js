@@ -12,6 +12,7 @@ import Footer from './components/Footer/Footer';
 import Error404 from './components/Error404/Error404';
 import LogOut from './components/Auth/LogOut';
 import Sells from './components/Profile/Sells/Sells'
+import Wishlist from './components/Profile/Wishlist/Wishlist'
 
 function App() {
    return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/auth/logout" exact render={LogOut} />
             <Route path='/add-product' exact component={AddProduct} />;
             <Route path='/your-sells' exact component={Sells} />;
+            <Route path='/wishlist' exact component={Wishlist} />;
             <Route component={Error404} />
          </Switch>
          <Footer />

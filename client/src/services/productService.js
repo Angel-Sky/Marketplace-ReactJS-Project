@@ -50,8 +50,8 @@ export async function wishProduct(id) {
     return (await fetch(`${baseUrl}/products/wish/${id}`, {credentials: 'include'})).json();
 }
 
-export async function unwishProduct(id) {
-    return (await fetch(`${baseUrl}/products/unwish/${id}`, {credentials: 'include'})).json();
+export async function getUserWishlist() {
+    return (await fetch(`${baseUrl}/products/wishlist/getWishlist`, {credentials: 'include'})).json();
 }
 
 

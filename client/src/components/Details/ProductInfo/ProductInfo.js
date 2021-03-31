@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Row, Tabs, Tab, Image } from 'react-bootstrap';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { wishProduct, unwishProduct } from '../../../services/productService'
-import { Link } from 'react-router-dom';
 
 function ProductInfo({ params }) {
     const [wish, setWish] = useState(false);
@@ -27,7 +26,6 @@ function ProductInfo({ params }) {
                 setWish(false);
             })
         }
-       
     }
 
     return (

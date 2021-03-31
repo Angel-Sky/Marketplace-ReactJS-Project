@@ -40,8 +40,8 @@ function Header() {
                                 <NavLink className="dropdown-item" to="/messages">
                                     <BsFillEnvelopeFill />Messages
                             </NavLink>
-                                <NavLink className="dropdown-item" to="/favourites">
-                                    <BsFillHeartFill />Favourites
+                                <NavLink className="dropdown-item" to="/wishlist">
+                                    <BsFillHeartFill />Wishlist
                             </NavLink>
 
                                 <NavDropdown.Divider />
