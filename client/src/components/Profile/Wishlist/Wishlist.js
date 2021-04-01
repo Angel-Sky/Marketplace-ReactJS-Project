@@ -13,7 +13,7 @@ function Wishlist() {
     useEffect(() => {
         getUserWishlist()
             .then(res => {
-                setProduct(res.wishlist);
+                setProduct(res.wishlist.filter(x => x.active == true));
                 setLoading(false)
             })
             .catch(err => console.log(err))
@@ -27,6 +27,7 @@ function Wishlist() {
                     {products.length > 0 ? (
                         <Row>
                             {products
+                               
                                 .map(x =>
                                     <Col xs={12} md={6} lg={4} key={x._id.toString()}>
                                         <ProductCard params={x} />

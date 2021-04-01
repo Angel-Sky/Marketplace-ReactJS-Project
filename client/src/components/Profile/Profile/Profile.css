@@ -13,18 +13,14 @@
     padding: 12px;
 }
 
-.nav-pills {
-    margin-top: 30px;
-    text-align: center;
-}
-
 #aside {
     border-right: 1px solid #8080804a;
+    margin-top: 25px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: #fff;
-    background-color: #36393c;
+#aside button {
+    width: 150px;
+    margin-bottom: 10px;
 }
 
 @media (min-width: 100px) {

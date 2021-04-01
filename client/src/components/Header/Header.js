@@ -1,16 +1,17 @@
 import { useContext } from 'react';
 import { Context } from '../../ContextStore';
-import { Navbar, NavDropdown, Nav, Card, CardDeck, Image } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav, Card, CardDeck, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { BsFillPersonFill, BsFillGridFill, BsFillHeartFill, BsFillEnvelopeFill, BsFillPlusCircleFill } from 'react-icons/bs';
 import { IoLogOut } from 'react-icons/io5'
+import { FaUserCircle } from 'react-icons/fa'
 
 import './Header.css'
 function Header() {
     const { userData, setUserData } = useContext(Context)
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect bg="light" variant="light">
             <div className="container">
                 <Navbar.Brand>
                     <NavLink className="navbar-brand" to="/">All for you...</NavLink>
@@ -24,37 +25,45 @@ function Header() {
                     {userData ?
                         (<Nav>
                             <NavLink className="nav-item" id="addButton" to="/add-product">
-                                <BsFillPlusCircleFill />Add product
-                        </NavLink>
+                                <OverlayTrigger key="bottom" placement="bottom"
+                                    overlay={
+                                        <Tooltip id={`tooltip-bottom`}>
+                                            <strong>Add</strong>  a sell.
+                                        </Tooltip>
+                                    }
+                                > 
+                                    <BsFillPlusCircleFill />
+                                </OverlayTrigger>
+                            </NavLink>
 
-                            <NavDropdown title="My Profile" id="collasible-nav-dropdown">
+                            <NavDropdown title={<FaUserCircle />} drop="left" id="collasible-nav-dropdown">
                                 <NavLink className="dropdown-item" to="/profile">
                                     <BsFillPersonFill />Profile
-                            </NavLink>
+                                </NavLink>
 
-                                <NavDropdown.Divider />
+                                {/* <NavDropdown.Divider /> */}
 
-                                <NavLink className="dropdown-item" to="/your-sells">
+                                {/* <NavLink className="dropdown-item" to="/your-sells">
                                     <BsFillGridFill />Sells
-                            </NavLink>
+                            </NavLink> */}
                                 <NavLink className="dropdown-item" to="/messages">
                                     <BsFillEnvelopeFill />Messages
                             </NavLink>
-                                <NavLink className="dropdown-item" to="/wishlist">
+                                {/* <NavLink className="dropdown-item" to="/wishlist">
                                     <BsFillHeartFill />Wishlist
-                            </NavLink>
+                            </NavLink> */}
 
                                 <NavDropdown.Divider />
 
-                                <NavLink className="dropdown-item" to="/auth/logout" onClick={()=> {
+                                <NavLink className="dropdown-item" to="/auth/logout" onClick={() => {
                                     setUserData(null)
                                 }}>
                                     <IoLogOut />Log out
                                 </NavLink>
                             </NavDropdown>
                         </Nav>)
-                    :
-                    (<Nav>
+                        :
+                        (<Nav>
                             <NavLink className="nav-item" id="nav-sign-in" to="/auth/login">
                                 Sign In
                             </NavLink>

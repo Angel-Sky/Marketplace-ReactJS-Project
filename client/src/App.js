@@ -11,8 +11,8 @@ import AddProduct from './components/AddProduct/AddProduct'
 import Footer from './components/Footer/Footer';
 import Error404 from './components/Error404/Error404';
 import LogOut from './components/Auth/LogOut';
-// import Sells from './components/Profile/Sells/Sells'
-import Wishlist from './components/Profile/Wishlist/Wishlist'
+// import ActiveSells from './components/Profile/Sells/ActiveSells'
+// import Wishlist from './components/Profile/Wishlist/Wishlist'
 import Profile from './components/Profile/Profile/Profile'
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
             <Route path="/auth/register" exact component={Register} />
             <Route path="/auth/logout" exact render={LogOut} />
             <Route path='/add-product' exact component={AddProduct} />;
-            {/* <Route path='/your-sells' exact component={Sells} />; */}
-            <Route path='/wishlist' exact component={Wishlist} />;
+            {/* <Route path='/your-sells' exact component={ActiveSells} />;
+            <Route path='/wishlist' exact component={Wishlist} />; */}
             <Route path='/profile' exact component={Profile} />;
             <Route component={Error404} />
          </Switch>
