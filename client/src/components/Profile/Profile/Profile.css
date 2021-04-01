@@ -13,6 +13,20 @@
     padding: 12px;
 }
 
+.nav-pills {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#aside {
+    border-right: 1px solid #8080804a;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #36393c;
+}
+
 @media (min-width: 100px) {
     .col-sm-12 {
         text-align: center;

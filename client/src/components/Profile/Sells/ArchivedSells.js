@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
-import SimpleSider from '../../Siders/SimpleSider'
-import ProductCard from '../../ProductCard/ProductCard';
+import DisabledCard from '../../ProductCard/DisabledProductCard/DisabledCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserWishlist } from '../../../services/productService';
+import { getUserSells } from '../../../services/productService';
 
-import './Wishlist.css';
+import './Sells.css';
 import '../../ProductCard/DisabledProductCard/DisabledCard.css'
-function Wishlist() {
+function ArchivedSells({ history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getUserWishlist()
+        getUserSells()
             .then(res => {
-                setProduct(res.wishlist);
+                setProduct(res.sells);
                 setLoading(false)
             })
             .catch(err => console.log(err))
@@ -21,28 +20,29 @@ function Wishlist() {
 
     return (
         <>
+
             {!loading ?
                 (<>
-                    <h1 className="heading">Wishlist</h1>
-                    {products.length > 0 ? (
+                    <h1 className="heading">Archive</h1>
+                    {products.filter(x => x.active === false).length > 0 ? (
                         <Row>
                             {products
+                                .filter(x => x.active === false)
                                 .map(x =>
                                     <Col xs={12} md={6} lg={4} key={x._id.toString()}>
-                                        <ProductCard params={x} />
+                                        <DisabledCard params={x} history={history} />
                                     </Col>
                                 )
                             }
                         </Row>
                     ) : (
                             <p className="nothing-to-show">Nothing to show</p>
-                        )}
-
+                        )
+                    }
                 </>) :
                 <Spinner animation="border" />}
-
         </>
     )
 }
 
-export default Wishlist;
+export default ArchivedSells;

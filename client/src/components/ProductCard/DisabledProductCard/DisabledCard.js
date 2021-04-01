@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
 import { RiDeviceRecoverFill } from 'react-icons/ri';
 import { activateSell } from '../../../services/productService';
@@ -16,6 +16,7 @@ function DisabledCard({ params, history }) {
                 setShow(false);
             })
     }
+
 
     return (
         <div className="disabled-card">

@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
-import SimpleSider from '../../Siders/SimpleSider'
 import ProductCard from '../../ProductCard/ProductCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserWishlist } from '../../../services/productService';
+import { getUserSells } from '../../../services/productService';
 
-import './Wishlist.css';
+import './Sells.css';
 import '../../ProductCard/DisabledProductCard/DisabledCard.css'
-function Wishlist() {
+function ActiveSells({ history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getUserWishlist()
+        getUserSells()
             .then(res => {
-                setProduct(res.wishlist);
+                setProduct(res.sells);
                 setLoading(false)
             })
             .catch(err => console.log(err))
@@ -21,12 +20,14 @@ function Wishlist() {
 
     return (
         <>
+
             {!loading ?
                 (<>
-                    <h1 className="heading">Wishlist</h1>
-                    {products.length > 0 ? (
+                    <h1 className="heading">Your Active Sells</h1>
+                    {products.filter(x => x.active === true).length > 0 ? (
                         <Row>
                             {products
+                                .filter(x => x.active === true)
                                 .map(x =>
                                     <Col xs={12} md={6} lg={4} key={x._id.toString()}>
                                         <ProductCard params={x} />
@@ -36,8 +37,8 @@ function Wishlist() {
                         </Row>
                     ) : (
                             <p className="nothing-to-show">Nothing to show</p>
-                        )}
-
+                        )
+                    }
                 </>) :
                 <Spinner animation="border" />}
 
@@ -45,4 +46,4 @@ function Wishlist() {
     )
 }
 
-export default Wishlist;
+export default ActiveSells;

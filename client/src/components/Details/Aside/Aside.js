@@ -22,7 +22,7 @@ function Aside({ params, history }) {
         archiveSell(params._id)
             .then(res => {
                 setShowArchive(false);
-                history.push('/your-sells')
+                history.push('/profile')
             })
     }
     console.log(params)
