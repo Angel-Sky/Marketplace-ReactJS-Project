@@ -22,6 +22,14 @@ export async function loginUser(userData) {
     })).json();
 }
 
-export async function checkUser() {
-    return await (await fetch(baseUrl + '/auth/checkUser', {credentials: 'include'})).json()
+export async function getUser() {
+    return await (await fetch(baseUrl + '/auth/getUser', {credentials: 'include'})).json()
+}
+
+export async function getUserSells() {
+    return (await fetch(`/products/sells/getSells`, {credentials: 'include'})).json();
+}
+
+export async function getUserWishlist() {
+    return (await fetch(`${baseUrl}/products/wishlist/getWishlist`, {credentials: 'include'})).json();
 }

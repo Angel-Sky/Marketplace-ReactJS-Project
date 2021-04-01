@@ -34,9 +34,6 @@ export async function editProduct(id, product) {
     })).json();
 }
 
-export async function getUserSells() {
-    return (await fetch(`/products/sells/getSells`)).json();
-}
 
 export async function activateSell(id) {
     return (await fetch(`/products/enable/${id}`)).json()
@@ -50,9 +47,7 @@ export async function wishProduct(id) {
     return (await fetch(`${baseUrl}/products/wish/${id}`, {credentials: 'include'})).json();
 }
 
-export async function getUserWishlist() {
-    return (await fetch(`${baseUrl}/products/wishlist/getWishlist`, {credentials: 'include'})).json();
-}
+
 
 
 

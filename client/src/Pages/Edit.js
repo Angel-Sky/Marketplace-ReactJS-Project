@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Col, Form, Button, Spinner } from 'react-bootstrap';
-import SimpleSider from '../Siders/SimpleSider';
-import { getSpecific, editProduct } from '../../services/productService';
+import SimpleSider from '../components/Siders/SimpleSider';
+import { getSpecific, editProduct } from '../services/productData';
+
+import '../components/Edit/Edit.css'
 
 function Edit({ match, history }) {
     const [product, setProduct] = useState({});

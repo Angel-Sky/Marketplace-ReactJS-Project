@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { RiMessage3Fill } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import { MdArchive } from 'react-icons/md'
-import { archiveSell } from '../../../services/productService'
+import { archiveSell } from '../../../services/productData'
 import './Aside.css';
 
 function Aside({ params, history }) {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import DisabledCard from '../../ProductCard/DisabledProductCard/DisabledCard';
+import DisabledCard from '../../DisabledProductCard/DisabledCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserSells } from '../../../services/productService';
+import { getUserSells } from '../../../services/userData';
 
 import './Sells.css';
-import '../../ProductCard/DisabledProductCard/DisabledCard.css'
+import '../../DisabledProductCard/DisabledCard.css'
 function ArchivedSells({ history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);

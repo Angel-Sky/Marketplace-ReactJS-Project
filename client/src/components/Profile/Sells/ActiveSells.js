@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '../../ProductCard/ProductCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserSells } from '../../../services/productService';
+import { getUserSells } from '../../../services/userData';
 
 import './Sells.css';
-import '../../ProductCard/DisabledProductCard/DisabledCard.css'
 function ActiveSells({ history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);

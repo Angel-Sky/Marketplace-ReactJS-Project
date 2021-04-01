@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import Wishlist from '../Wishlist/Wishlist'
-import ActiveSells from '../Sells/ActiveSells';
-import ArchivedSells from '../Sells/ArchivedSells'
+import Wishlist from '../components/Profile/Wishlist/Wishlist'
+import ActiveSells from '../components/Profile/Sells/ActiveSells';
+import ArchivedSells from '../components/Profile/Sells/ArchivedSells'
+import { getUser } from '../services/userData';
 import { Col, Row, Button } from 'react-bootstrap';
-import { checkUser } from '../../../services/authService';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
 import { FaSellsy } from 'react-icons/fa'
-import './Profile.css';
+import '../components/Profile/Profile.css';
 
 function Profile({ history }) {
     const [active, setActive] = useState(true);
@@ -34,7 +34,7 @@ function Profile({ history }) {
     }
 
     useEffect(() => {
-        checkUser()
+        getUser()
             .then(res => setUser(res.user))
     }, [setUser])
 

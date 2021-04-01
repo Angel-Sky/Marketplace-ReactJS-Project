@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import SimpleSider from '../../Siders/SimpleSider'
 import ProductCard from '../../ProductCard/ProductCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserWishlist } from '../../../services/productService';
+import { getUserWishlist } from '../../../services/userData';
 
 import './Wishlist.css';
-import '../../ProductCard/DisabledProductCard/DisabledCard.css'
+
 function Wishlist() {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);

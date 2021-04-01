@@ -9,7 +9,7 @@ export const ContextStore = ({ children }) => {
 
     useEffect(() => {
         if (cookies.USER_SESSION) {
-            fetch(`/auth/checkUser`).then(res => res.json())
+            fetch(`/auth/getUser`).then(res => res.json())
                 .then(res => {
                     return setUserData(res.user)
                 })

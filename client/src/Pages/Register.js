@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Form, Button, Col, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { registerUser } from '../../../services/authService';
-import SimpleSider from '../../Siders/SimpleSider';
-import '../auth.css';
+import { registerUser } from '../services/userData';
+import SimpleSider from '../components/Siders/SimpleSider';
+import '../components/Register/Register.css';
 
 function Register({ history }) {
     const [loading, setLoading] = useState(false);

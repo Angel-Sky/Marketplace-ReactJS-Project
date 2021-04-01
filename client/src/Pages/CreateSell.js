@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Form, Button, Col, Spinner } from 'react-bootstrap';
-import SimpleSider from '../Siders/SimpleSider';
-import './AddProduct.css';
-import { createProduct } from '../../services/productService';
+import { createProduct } from '../services/productData';
+import SimpleSider from '../components/Siders/SimpleSider';
+import '../components/CreateSell/CreateSell.css';
 
 class AddProduct extends Component {
     constructor(props) {

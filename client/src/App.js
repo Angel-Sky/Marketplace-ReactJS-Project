@@ -2,18 +2,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Categories from './components/Home/Categories/Categories';
-import Login from './components/Auth/Login/Login';
-import Register from './components/Auth/Register/Register';
-import Details from './components/Details/Details';
-import Edit from './components/Edit/Edit';
-import AddProduct from './components/AddProduct/AddProduct'
 import Footer from './components/Footer/Footer';
-import Error404 from './components/Error404/Error404';
-import LogOut from './components/Auth/LogOut';
-// import ActiveSells from './components/Profile/Sells/ActiveSells'
-// import Wishlist from './components/Profile/Wishlist/Wishlist'
-import Profile from './components/Profile/Profile/Profile'
+import Categories from './Pages/Categories';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import LogOut from './Pages/LogOut';
+import Profile from './Pages/Profile'
+import Details from './Pages/Details';
+import Edit from './Pages/Edit';
+import CreateSell from './Pages/CreateSell'
+import Error404 from './Pages/Error404';
 
 function App() {
    return (
@@ -27,9 +25,7 @@ function App() {
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/register" exact component={Register} />
             <Route path="/auth/logout" exact render={LogOut} />
-            <Route path='/add-product' exact component={AddProduct} />;
-            {/* <Route path='/your-sells' exact component={ActiveSells} />;
-            <Route path='/wishlist' exact component={Wishlist} />; */}
+            <Route path='/add-product' exact component={CreateSell} />;
             <Route path='/profile' exact component={Profile} />;
             <Route component={Error404} />
          </Switch>

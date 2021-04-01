@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import SimpleSider from '../Siders/SimpleSider';
-import Breadcrumb from './Breadcrumb'
-import ProductInfo from './ProductInfo/ProductInfo';
-import Aside from './Aside/Aside';
-import { getSpecific } from '../../services/productService'
+import SimpleSider from '../components/Siders/SimpleSider';
+import Breadcrumb from '../components/Details/Breadcrumb'
+import ProductInfo from '../components/Details/ProductInfo/ProductInfo';
+import Aside from '../components/Details/Aside/Aside';
+import { getSpecific } from '../services/productData'
 
-import './ProductInfo/ProductInfo.css';
-import './Aside/Aside.css';
+import '../components/Details/ProductInfo/ProductInfo.css';
+import '../components/Details/Aside/Aside.css';
 
 function Details({ match, history }) {
     let productId = match.params.id;

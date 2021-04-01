@@ -1,10 +1,9 @@
 import { useState, useContext } from 'react';
-import { Context } from '../../../ContextStore';
-import { loginUser } from '../../../services/authService'
+import { Context } from '../ContextStore';
+import { loginUser } from '../services/userData'
 import { Form, Button, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import SimpleSider from '../../Siders/SimpleSider';
-import '../auth.css';
+import SimpleSider from '../components/Siders/SimpleSider';
 
 function Login({ history }) {
     const [loading, setLoading] = useState(false);
