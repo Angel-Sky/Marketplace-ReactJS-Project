@@ -57,3 +57,10 @@
     color: white;
     background-color: #343a40;
 }
+#navImg {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 1px solid black;
+}

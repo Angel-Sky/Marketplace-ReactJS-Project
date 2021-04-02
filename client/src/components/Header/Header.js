@@ -36,7 +36,7 @@ function Header() {
                                 </OverlayTrigger>
                             </NavLink>
 
-                            <NavDropdown title={<FaUserCircle />} drop="left" id="collasible-nav-dropdown">
+                            <NavDropdown title={<img id="navImg" src={userData.avatar}/>} drop="left" id="collasible-nav-dropdown">
                                 <NavLink className="dropdown-item" to="/profile">
                                     <BsFillPersonFill />Profile
                                 </NavLink>
