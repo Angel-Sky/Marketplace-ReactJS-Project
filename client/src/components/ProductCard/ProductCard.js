@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
+// import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 function ProductCard({ params }) {
@@ -14,8 +14,8 @@ function ProductCard({ params }) {
             </Link>
             <Card.Footer>
                 <small className="text-muted">
-                    {params.addedAt} -  {params.city}
-                    <Link to="" id="heartIcon"><BsHeart /></Link>
+                    {params.addedAt} -  <strong>{params.city}</strong>
+                    {/* <Link to="" id="heartIcon"><BsHeart /></Link> */}
                 </small>
             </Card.Footer>
         </Card>

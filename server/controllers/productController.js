@@ -4,12 +4,14 @@ const { cloudinary } = require('../config/cloudinary');
 const isAuth = require('../middlewares/isAuth')
 const Product = require('../models/Product');
 const User = require('../models/User');
+const moment = require('moment');
 
 const productService = require('../services/productService');
 
 router.get('/', async (req, res) => {
     try {
         let products = await productService.getAll()
+        products = products.map(x => ({ ...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ message: error.message })
