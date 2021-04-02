@@ -44,3 +44,7 @@ export async function editUserProfile(id, data) {
         body: JSON.stringify(data)
     })).json();
 }
+
+export async function getUserById(id) {
+    return await (await fetch(baseUrl + `/user/getUserById/${id}`, {credentials: 'include'})).json()
+}

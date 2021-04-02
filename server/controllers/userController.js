@@ -37,4 +37,14 @@ router.patch('/edit-profile/:id', async (req, res) => {
     }
 })
 
+router.get('/getUserById/:id', async (req, res) => {
+    console.log(req.params.id)
+    try {
+        let user = await userService.getUserById(req.params.id);
+        res.status(200).json({user: {...user, totalSells: user.createdSells.length}})
+    } catch (error) {
+        res.status(500).json({ error: err.message });   
+    }
+})
+
 module.exports = router;
