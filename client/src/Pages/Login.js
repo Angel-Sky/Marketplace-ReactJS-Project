@@ -1,17 +1,19 @@
 import { useState, useContext } from 'react';
 import { Context } from '../ContextStore';
 import { loginUser } from '../services/userData'
-import { Form, Button, Spinner } from 'react-bootstrap';
+import { Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SimpleSider from '../components/Siders/SimpleSider';
 
 function Login({ history }) {
     const [loading, setLoading] = useState(false);
+    const [alertShow, setAlertShow] = useState(false);
+    const [error, setError] = useState(null);
     const [user, setUser] = useState({
         email: "",
         password: ""
     });
-    const {userData, setUserData} = useContext(Context)
+    const { userData, setUserData } = useContext(Context)
 
     const handleChanges = (e) => {
         e.preventDefault();
@@ -28,9 +30,10 @@ function Login({ history }) {
                     history.push('/')
                 } else {
                     setLoading(false);
-                    console.log(res.error)
+                    setError(res.error.message);
+                    setAlertShow(true);
                 }
-            })
+            }).catch(err => console.error('error from login: ', err))
     }
 
     return (
@@ -39,6 +42,13 @@ function Login({ history }) {
             <div className="container auth-form">
                 <h1 className="auth-heading">Sign In</h1>
                 <Form className="col-lg-6" onSubmit={handleSubmitLogin}>
+                    {alertShow &&
+                        <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>
+                            <p>
+                                {error}
+                            </p>
+                        </Alert>
+                    }
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name="email" placeholder="Enter email" onChange={handleChanges} required />

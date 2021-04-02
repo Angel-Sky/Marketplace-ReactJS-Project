@@ -26,21 +26,20 @@ function Register({ history }) {
 
     const handleSubmitReg = (e) => {
         e.preventDefault();
-        console.log(userData)
         setLoading(true);
         registerUser(userData)
             .then(res => {
-                console.log(res)
                 if (!res.error) {
                     history.push('/auth/login')
                 } else {
                     setLoading(false);
                     setError(res.error);
                     setAlertShow(true);
-                    console.log(res.error)
                 }
+            }).catch(err => {
+                setError(err);
+                setAlertShow(true);
             })
-            .catch(err => console.error(err))
     }
 
     return (
@@ -49,13 +48,13 @@ function Register({ history }) {
             <div className="container auth-form">
                 <h1 className="auth-heading">Sign Up</h1>
                 <Form className="col-lg-8" onSubmit={handleSubmitReg}>
-                {alertShow &&
-                    <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>
-                        <p>
-                            {error}
-                        </p>
-                    </Alert>
-                }
+                    {alertShow &&
+                        <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>
+                            <p>
+                                {error}
+                            </p>
+                        </Alert>
+                    }
                     <Form.Row>
                         <Form.Group controlId="forName" className="col-lg-8">
                             <Form.Label>Name *</Form.Label>
