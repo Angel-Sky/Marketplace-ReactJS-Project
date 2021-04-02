@@ -39,7 +39,7 @@ function Profile({ history }) {
         getUser()
             .then(res => setUser(res.user))
     }, [setUser])
-    console.log(user)
+    
     return (
         <>
             <div id="profile-head">

@@ -32,7 +32,7 @@ router.get('/specific/:id', async (req, res) => {
         let product = await (await Product.findById(req.params.id)).toJSON()
         let seller = await (await User.findById(product.seller)).toJSON()
         let user = await User.findById(req.user._id)
-
+        product.addedAt = moment(product.addedAt).format('d MMM YYYY (dddd) HH:mm')
         res.status(200).json({
             ...product,
             name: seller.name,

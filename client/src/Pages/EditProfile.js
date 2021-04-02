@@ -33,7 +33,6 @@ function EditProfile({ history }) {
         e.preventDefault();
         let { _id, name, phoneNumber, email, avatar } = user;
         let obj = { name, phoneNumber, email }
-        console.log(avatar)
         setLoading(true);
         if (typeof avatar == 'object') {
             getBase64(avatar)
