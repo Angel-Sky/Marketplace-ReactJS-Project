@@ -2,14 +2,14 @@ const baseUrl = 'http://localhost:5000';
 
 export async function getAll(category) {
     if (category && category !== 'all') {
-        return (await fetch(`${baseUrl}/products/${category}`, {credentials: 'include'})).json();
+        return (await fetch(`${baseUrl}/products/${category}`, { credentials: 'include' })).json();
     } else {
-        return (await fetch(`${baseUrl}/products`, {credentials: 'include'})).json();
+        return (await fetch(`${baseUrl}/products`, { credentials: 'include' })).json();
     }
 }
 
 export async function getSpecific(id) {
-    return (await fetch(`${baseUrl}/products/specific/${id}`, {credentials: 'include'})).json();
+    return (await fetch(`${baseUrl}/products/specific/${id}`, { credentials: 'include' })).json();
 }
 
 export async function createProduct(product) {
@@ -44,7 +44,7 @@ export async function archiveSell(id) {
 }
 
 export async function wishProduct(id) {
-    return (await fetch(`${baseUrl}/products/wish/${id}`, {credentials: 'include'})).json();
+    return (await fetch(`${baseUrl}/products/wish/${id}`, { credentials: 'include' })).json();
 }
 
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Col, Form, Button, Spinner } from 'react-bootstrap';
+import { Col, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import SimpleSider from '../components/Siders/SimpleSider';
 import { getSpecific, editProduct } from '../services/productData';
 
@@ -8,6 +8,8 @@ import '../components/Edit/Edit.css'
 function Edit({ match, history }) {
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(false);
+    const [alertShow, setAlertShow] = useState(false);
+    const [error, setError] = useState(null);
     const productId = match.params.id;
 
     useEffect(() => {
@@ -24,25 +26,44 @@ function Edit({ match, history }) {
     }
 
     const onSubmitHandler = (e) => {
+        //TODO: Rewrite this 
         e.preventDefault();
         let { _id, title, price, description, city, category, image } = product;
         let obj = { title, price, description, city, category }
         setLoading(true);
-        if (typeof image == "object") {
+        if (typeof image == 'object') {
             getBase64(image)
                 .then((data) => {
                     obj['image'] = data;
+                    editProduct(_id, obj)
+                        .then(res => {
+                            if (!res.error) {
+                                history.push(`/categories/${category}/${_id}/details`)
+                            } else {
+                                setLoading(false);
+                                setError(res.error);
+                                setAlertShow(true);
+                            }
+                        })
+                        .catch(err => console.error('edit product err: ', err))
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log('base64 error: ', err));
+        } else {
+            editProduct(_id, obj)
+                .then(res => {
+                    if (!res.error) {
+                        history.push(`/categories/${category}/${_id}/details`)
+                    } else {
+                        setLoading(false);
+                        setError(res.error);
+                        setAlertShow(true);
+                    }
+                })
+                .catch(err => console.error('edit product err: ', err))
         }
-        editProduct(_id, obj)
-            .then(res => {
-                history.push(`/categories/${category}/${_id}/details`)
-            })
-            .catch(err => console.log(err))
     }
 
-    const getBase64 = (file) => {
+    function getBase64(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -57,6 +78,13 @@ function Edit({ match, history }) {
             <div className='container'>
                 <h1 className="heading">Edit {product.title}</h1>
                 <Form onSubmit={onSubmitHandler}>
+                    {alertShow &&
+                        <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>
+                            <p>
+                                {error}
+                            </p>
+                        </Alert>
+                    }
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridTitle">
                             <Form.Label>Title</Form.Label>

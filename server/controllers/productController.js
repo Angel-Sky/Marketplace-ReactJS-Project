@@ -50,15 +50,14 @@ router.post('/create', isAuth, async (req, res) => {
     let { title, price, description, city, category, image } = req.body;
     try {
         let errors = [];
-
         if (title.length < 3 || title.length > 50) errors.push('Title should be at least 3 characters long and max 50 characters long; ');
         if (isNaN(Number(price))) errors.push('Price should be a number; ');
         if (description.length < 10 || description.length > 1000) errors.push('Description should be at least 10 characters long and max 1000 characters long; ');
-        if (/[a-zA-Z]+/g.test(city) == false) errors.push('City should contains only english letters; ')
+        if (/^[A-Za-z]+$/.test(city) == false) errors.push('City should contains only english letters; ')
         if (!image.includes('image')) errors.push('The uploaded file should be an image; ');
-        if (category == "Choose...") errors.push('Category is required; ');
+        if (!category) errors.push('Category is required; ');
 
-        if (errors.length >= 1) throw {message: [errors]};
+        if (errors.length >= 1) throw { message: [errors] };
 
         let compressedImg = await productService.uploadImage(image);
         let product = new Product({
@@ -79,17 +78,36 @@ router.post('/create', isAuth, async (req, res) => {
 });
 
 router.patch('/edit/:id', isAuth, async (req, res) => {
+    //TODO: Rewrite this 
+    let { title, price, description, city, category, image } = req.body;
     try {
         let user = await productService.findUserById(req.user._id);
         let product = await productService.findById(req.params.id);
+        let errors = [];
         if (user._id.toString() !== product.seller.toString()) {
-            throw { message: 'You have no permission to perform this action' };
+            errors.push('You have no permission to perform this action! ')
         }
 
-        await productService.edit(req.params.id, req.body);
-        res.status(200).json({ message: 'Updated!' });
+        if (title.length < 3 || title.length > 50) errors.push('Title should be at least 3 characters long and max 50 characters long; ');
+        if (isNaN(Number(price))) errors.push('Price should be a number; ');
+        if (description.length < 10 || description.length > 1000) errors.push('Description should be at least 10 characters long and max 1000 characters long; ');
+        if (/^[A-Za-z]+$/.test(city) == false) errors.push('City should contains only english letters; ')
+        if (req.body.image) {
+            if (!req.body.image.includes('image')) errors.push('The uploaded file should be an image; ');
+        }
+        if (!category || category == "Choose...") errors.push('Category is required; ');
+
+        if (errors.length >= 1) throw { message: [errors] };
+
+        if (req.body.image) {
+            let compressedImg = await productService.uploadImage(req.body.image);
+            await productService.edit(req.params.id, { title, price, description, city, category, image: compressedImg });
+        } else {
+            await productService.edit(req.params.id, { title, price, description, city, category });
+        }
+        res.status(201).json({ message: 'Updated!' });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(404).json({ error: err.message });
     }
 })
 

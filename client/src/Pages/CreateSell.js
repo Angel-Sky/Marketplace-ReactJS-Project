@@ -16,12 +16,7 @@ class AddProduct extends Component {
         e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         if (e.target.files) {
-            // if (e.target.files[0].type.includes('image/')) {
-                this.setState({ image: e.target.files[0] })
-            // } else {
-                //TODO sent it to client
-            //     console.log("The file should be image")
-            // }
+            this.setState({ image: e.target.files[0] })
         }
     };
 
@@ -35,9 +30,7 @@ class AddProduct extends Component {
                 obj['image'] = data;
                 createProduct(obj)
                     .then(res => {
-                        console.log(res)
                         if (res.error) {
-                            console.log(res.message)
                             this.setState({ loading: false })
                             this.setState({ errors: res.error })
                             this.setState({ alertShow: true })
@@ -67,7 +60,7 @@ class AddProduct extends Component {
                     <h1 className="heading">Add a Product</h1>
                     <Form onSubmit={this.onSubmitHandler}>
                         {this.state.alertShow &&
-                            <Alert variant="danger" onClose={() => this.setState({alertShow: false})} dismissible>
+                            <Alert variant="danger" onClose={() => this.setState({ alertShow: false })} dismissible>
                                 <p>
                                     {this.state.errors}
                                 </p>
