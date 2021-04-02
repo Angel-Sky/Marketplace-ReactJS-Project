@@ -20,3 +20,7 @@ form {
 .bottom-msg-paragraph a:hover {
     text-decoration: underline;
 }
+
+.form-text {
+    margin-left: 4px;
+}

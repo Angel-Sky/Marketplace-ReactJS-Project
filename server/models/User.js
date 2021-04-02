@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        default: null
+        required: 'Please fill a name. It can be your real one or a username.'
     },
     email: {
         type: String,
@@ -32,7 +32,11 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         trim: true,
-        default: null
+        default: 'Not specified'
+    },
+    avatar: {
+        type: String,
+        default: 'https://res.cloudinary.com/silenceiv/image/upload/q_auto:eco/v1617358367/defaultAvatar_wnoogh.png'
     },
     createdSells: [
         {
