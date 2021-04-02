@@ -32,7 +32,7 @@ router.get('/specific/:id', async (req, res) => {
         let product = await (await Product.findById(req.params.id)).toJSON()
         let seller = await (await User.findById(product.seller)).toJSON()
         let user = await User.findById(req.user._id)
-        
+
         res.status(200).json({
             ...product,
             name: seller.name,
@@ -49,7 +49,16 @@ router.get('/specific/:id', async (req, res) => {
 router.post('/create', isAuth, async (req, res) => {
     let { title, price, description, city, category, image } = req.body;
     try {
-        if (!image.includes('image')) throw { message: 'The uploaded file should be an image' };
+        let errors = [];
+
+        if (title.length < 3 || title.length > 50) errors.push('Title should be at least 3 characters long and max 50 characters long; ');
+        if (isNaN(Number(price))) errors.push('Price should be a number; ');
+        if (description.length < 10 || description.length > 1000) errors.push('Description should be at least 10 characters long and max 1000 characters long; ');
+        if (/[a-zA-Z]+/g.test(city) == false) errors.push('City should contains only english letters; ')
+        if (!image.includes('image')) errors.push('The uploaded file should be an image; ');
+        if (category == "Choose...") errors.push('Category is required; ');
+
+        if (errors.length >= 1) throw {message: [errors]};
 
         let compressedImg = await productService.uploadImage(image);
         let product = new Product({
@@ -65,7 +74,7 @@ router.post('/create', isAuth, async (req, res) => {
         res.status(201).json({ productId: product._id });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: err.message });
+        res.status(404).json({ error: err.message })
     }
 });
 
@@ -115,15 +124,15 @@ router.get('/archive/:id', async (req, res) => {
 router.get('/wish/:id', async (req, res) => {
     try {
         let user = await User.findById(req.user._id);
-        
+
         if (!user.wishedProducts.includes(req.params.id)) {
             await User.updateOne({ _id: req.user._id }, { $push: { wishedProducts: req.params.id } })
-            await Product.updateOne({ _id: req.params.id }, { $push: { likes: user }});
+            await Product.updateOne({ _id: req.params.id }, { $push: { likes: user } });
 
             res.status(200).json({ msg: "wished" });
         } else {
             await User.updateOne({ _id: req.user._id }, { $pull: { wishedProducts: req.params.id } })
-            await Product.updateOne({ _id: req.params.id }, { $pull: { likes: req.user._id }});
+            await Product.updateOne({ _id: req.params.id }, { $pull: { likes: req.user._id } });
 
             res.status(200).json({ msg: "unwished" });
         }

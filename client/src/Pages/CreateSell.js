@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Form, Button, Col, Spinner } from 'react-bootstrap';
+import { Form, Button, Col, Spinner, Alert } from 'react-bootstrap';
 import { createProduct } from '../services/productData';
 import SimpleSider from '../components/Siders/SimpleSider';
 import '../components/CreateSell/CreateSell.css';
@@ -7,7 +7,7 @@ import '../components/CreateSell/CreateSell.css';
 class AddProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = { title: "", price: "", description: "", city: "", category: "", image: "", loading: false };
+        this.state = { title: "", price: "", description: "", city: "", category: "", image: "", loading: false, alertShow: false, errors: [] };
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
@@ -16,12 +16,12 @@ class AddProduct extends Component {
         e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         if (e.target.files) {
-            if (e.target.files[0].type.includes('image/')) {
+            // if (e.target.files[0].type.includes('image/')) {
                 this.setState({ image: e.target.files[0] })
-            } else {
+            // } else {
                 //TODO sent it to client
-                console.log("The file should be image")
-            }
+            //     console.log("The file should be image")
+            // }
         }
     };
 
@@ -29,25 +29,25 @@ class AddProduct extends Component {
         e.preventDefault();
         let { title, price, description, city, category, image } = this.state;
         let obj = { title, price, description, city, category }
-        this.setState({
-            loading: true,
-        })
+        this.setState({ loading: true })
         this.getBase64(image)
             .then((data) => {
                 obj['image'] = data;
                 createProduct(obj)
                     .then(res => {
-                        if (res.message) {
+                        console.log(res)
+                        if (res.error) {
                             console.log(res.message)
-                            this.setState({loading: false})
+                            this.setState({ loading: false })
+                            this.setState({ errors: res.error })
+                            this.setState({ alertShow: true })
                         } else {
-                            console.log(res)
                             this.props.history.push(`/categories/${category}/${res.productId}/details`)
                         }
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => console.error('Creating product err: ', err))
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error('Converting to base64 err: ', err));
     }
 
     getBase64(file) {
@@ -66,6 +66,13 @@ class AddProduct extends Component {
                 <div className='container'>
                     <h1 className="heading">Add a Product</h1>
                     <Form onSubmit={this.onSubmitHandler}>
+                        {this.state.alertShow &&
+                            <Alert variant="danger" onClose={() => this.setState({alertShow: false})} dismissible>
+                                <p>
+                                    {this.state.errors}
+                                </p>
+                            </Alert>
+                        }
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label>Title</Form.Label>

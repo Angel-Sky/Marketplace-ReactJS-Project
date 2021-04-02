@@ -36,10 +36,7 @@ function Register({ history }) {
                     setError(res.error);
                     setAlertShow(true);
                 }
-            }).catch(err => {
-                setError(err);
-                setAlertShow(true);
-            })
+            }).catch(err => console.error('error from register: ', err))
     }
 
     return (
