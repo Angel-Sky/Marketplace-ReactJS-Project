@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { Context } from '../ContextStore'
 import ActiveSells from '../components/Profile/Sells/ActiveSells';
 import { getUser, editUserProfile } from '../services/userData';
-import { Col, Row, Button, OverlayTrigger, Tooltip, Spinner } from 'react-bootstrap';
+import { Col, Row, Button, OverlayTrigger, Tooltip, Spinner, Alert } from 'react-bootstrap';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
 import { TiTick } from 'react-icons/ti'
@@ -66,7 +67,6 @@ function EditProfile({ history }) {
         }
     }
 
-
     function getBase64(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -81,6 +81,13 @@ function EditProfile({ history }) {
             <div id="profile-head">
                 <div className="container">
                     <form className="col-lg-12">
+                        {alertShow &&
+                            <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>
+                                <p>
+                                    {error}
+                                </p>
+                            </Alert>
+                        }
                         <Row className="profile-row">
                             <Col lg={3} md={5} sm={12}>
                                 <label htmlFor="file-upload" className="custom-file-upload">
@@ -90,7 +97,7 @@ function EditProfile({ history }) {
                                         <img id="avatar" src={user.avatar} />
                                     </OverlayTrigger>
                                 </label>
-                                <input id="file-upload" type="file" name ="avatar" onChangeCapture={handleChanges} />
+                                <input id="file-upload" type="file" name="avatar" onChangeCapture={handleChanges} />
                             </Col>
                             <Col lg={4} md={3} sm={12}>
                                 <p><BsFillPersonFill /> <input type="text" name="name" value={user.name} onChange={handleChanges} required /></p>
