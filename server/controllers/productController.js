@@ -36,8 +36,11 @@ router.get('/specific/:id', async (req, res) => {
         res.status(200).json({
             ...product,
             name: seller.name,
-            phone: seller.phoneNumber,
+            phoneNumber: seller.phoneNumber,
             email: seller.email,
+            createdSells: seller.createdSells.length,
+            avatar: seller.avatar,
+            sellerId: seller._id,
             isSeller: Boolean(req.user._id == product.seller),
             isWished: user.wishedProducts.includes(req.params.id)
         });

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ProfileSection from '../components/Profile/ProfileSection'
 import Wishlist from '../components/Profile/Wishlist/Wishlist'
 import ActiveSells from '../components/Profile/Sells/ActiveSells';
 import ArchivedSells from '../components/Profile/Sells/ArchivedSells'
@@ -39,10 +40,11 @@ function Profile({ history }) {
         getUser()
             .then(res => setUser(res.user))
     }, [setUser])
-    
+
     return (
         <>
-            <div id="profile-head">
+            <ProfileSection params={user} />
+            {/* <div id="profile-head">
                 <div className="container">
                     <Row className="profile-row">
                         <Col lg={2} md={5} sm={12}>
@@ -59,7 +61,7 @@ function Profile({ history }) {
                         </span>
                     </Row>
                 </div>
-            </div>
+            </div> */}
             <div className="container">
                 <Row>
                     <Col lg={2} sm={12} id="aside">

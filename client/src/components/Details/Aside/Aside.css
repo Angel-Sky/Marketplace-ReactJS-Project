@@ -1,5 +1,6 @@
 #btnContact {
     padding: 6px;
+    margin-bottom: 45px;
 }
 
 #btnContact svg {
@@ -30,4 +31,8 @@
     margin-bottom: 8px;
     margin-left: 6px;
     cursor: pointer;
+}
+
+.product-details-seller {
+    text-align: center;
 }

@@ -11,7 +11,7 @@ function BreadcrumbNav({ params }) {
                 <Link to={`/categories/${params.category}`}>{params.category}</Link>
             </li>
             <li  className="breadcrumb-item">
-                <Link to={`/categories/${params.category}/${params.id}/details`}>{params.title}</Link>
+                <Link to={`/categories/${params.category}/${params._id}/details`}>{params.title}</Link>
             </li>
         </Breadcrumb>
     )

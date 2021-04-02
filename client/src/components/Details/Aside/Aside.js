@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Button, Modal, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, Modal, Form, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { RiMessage3Fill } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import { MdArchive } from 'react-icons/md'
+import { BsFillPersonFill } from 'react-icons/bs';
+import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
+import { FaSellsy } from 'react-icons/fa'
 import { archiveSell } from '../../../services/productData'
 import './Aside.css';
+
 
 function Aside({ params, history }) {
     const [showMsg, setShowMdg] = useState(false);
@@ -28,29 +32,41 @@ function Aside({ params, history }) {
     console.log(params)
     return (
         <aside>
-            <div id="priceLabel" className="col-lg-12">
-                <h4 id="product-price-heading">Product Price </h4>
-                {params.isSeller &&
-                    <>
-                        <OverlayTrigger placement="top" overlay={<Tooltip>Edit the selling</Tooltip>}>
-                            <span id="edit-icon">
-                                <Link to={`/categories/${params.category}/${params._id}/edit`}><GrEdit /></Link>
-                            </span>
-                        </OverlayTrigger>
-                        <OverlayTrigger placement="top" overlay={<Tooltip>Archive</Tooltip>}>
-                            <span id="archive-icon" onClick={handleShowArchive}>
-                                <MdArchive />
-                            </span>
-                        </OverlayTrigger>
+            <div className="product-details-seller">
+                <div id="priceLabel" className="col-lg-12">
+                    <h4 id="product-price-heading">Product Price </h4>
+                    {params.isSeller &&
+                        <>
+                            <OverlayTrigger placement="top" overlay={<Tooltip>Edit the selling</Tooltip>}>
+                                <span id="edit-icon">
+                                    <Link to={`/categories/${params.category}/${params._id}/edit`}><GrEdit /></Link>
+                                </span>
+                            </OverlayTrigger>
+                            <OverlayTrigger placement="top" overlay={<Tooltip>Archive</Tooltip>}>
+                                <span id="archive-icon" onClick={handleShowArchive}>
+                                    <MdArchive />
+                                </span>
+                            </OverlayTrigger>
 
-                    </>
-                }
-                <h1 id="price-heading">{params.price} €</h1>
+                        </>
+                    }
+                    <h1 id="price-heading">{params.price} €</h1>
+                </div>
+                <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
+                    <RiMessage3Fill />Contact Seller
+                 </Button>{' '}
+                <Link to={`/profile/${params.sellerId}`}>
+                    <Col lg={12}>
+                        <img id="avatar" src={params.avatar} />
+                    </Col>
+                    <Col lg={12}>
+                        <p><BsFillPersonFill /> {params.name}</p>
+                        <p><MdEmail /> {params.email}</p>
+                        <p><MdPhoneAndroid /> {params.phoneNumber}</p>
+                        <p><FaSellsy /> {params.createdSells} sells in total</p>
+                    </Col>
+                </Link>
             </div>
-            <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
-                <RiMessage3Fill />Contact Seller
-            </Button>{' '}
-
             <Modal show={showMsg} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Message</Modal.Title>
