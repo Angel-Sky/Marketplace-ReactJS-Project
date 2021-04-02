@@ -7,10 +7,11 @@ import Categories from './Pages/Categories';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import LogOut from './Pages/LogOut';
-import Profile from './Pages/Profile'
+import Profile from './Pages/Profile';
 import Details from './Pages/Details';
 import Edit from './Pages/Edit';
-import CreateSell from './Pages/CreateSell'
+import CreateSell from './Pages/CreateSell';
+import EditProfile from './Pages/EditProfile'
 import Error404 from './Pages/Error404';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/auth/logout" exact render={LogOut} />
             <Route path='/add-product' exact component={CreateSell} />;
             <Route path='/profile' exact component={Profile} />;
+            <Route path='/profile/edit' exact component={EditProfile} />;
             <Route component={Error404} />
          </Switch>
          <Footer />

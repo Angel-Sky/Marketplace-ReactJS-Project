@@ -33,3 +33,14 @@ export async function getUserSells() {
 export async function getUserWishlist() {
     return (await fetch(`${baseUrl}/products/wishlist/getWishlist`, {credentials: 'include'})).json();
 }
+
+export async function editUserProfile(id, data) {
+    return (await fetch(`/user/edit-profile/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+    })).json();
+}
