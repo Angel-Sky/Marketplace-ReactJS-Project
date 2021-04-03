@@ -26,8 +26,13 @@ export async function getUser() {
     return await (await fetch(baseUrl + '/auth/getUser', {credentials: 'include'})).json()
 }
 
-export async function getUserSells() {
-    return (await fetch(`/products/sells/getSells`, {credentials: 'include'})).json();
+export async function getUserActiveSells(id) {
+    console.log(id)
+    return (await fetch(`${baseUrl}/products/sells/active/${id}`, {credentials: 'include'})).json();
+}
+
+export async function getUserArchivedSells() {
+    return (await fetch(`${baseUrl}/products/sells/archived`, {credentials: 'include'})).json();
 }
 
 export async function getUserWishlist() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import DisabledCard from '../../DisabledProductCard/DisabledCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserSells } from '../../../services/userData';
+import { getUserArchivedSells } from '../../../services/userData';
 
 import './Sells.css';
 import '../../DisabledProductCard/DisabledCard.css'
@@ -10,7 +10,7 @@ function ArchivedSells({ history }) {
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getUserSells()
+        getUserArchivedSells()
             .then(res => {
                 setProduct(res.sells);
                 setLoading(false)
@@ -24,7 +24,7 @@ function ArchivedSells({ history }) {
             {!loading ?
                 (<>
                     <h1 className="heading">Archive</h1>
-                    {products.filter(x => x.active === false).length > 0 ? (
+                    {products ? (
                         <Row>
                             {products
                                 .filter(x => x.active === false)

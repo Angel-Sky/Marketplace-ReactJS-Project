@@ -1,32 +1,31 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '../../ProductCard/ProductCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import { getUserSells } from '../../../services/userData';
+import { getUserActiveSells } from '../../../services/userData';
 
 import './Sells.css';
-function ActiveSells({ history }) {
+function ActiveSells({ params, history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);
-
     useEffect(() => {
-        getUserSells()
-            .then(res => {
-                setProduct(res.sells);
-                setLoading(false)
-            })
-            .catch(err => console.log(err))
-    }, [setProduct, setLoading])
+        if (params._id) {
+            getUserActiveSells(params._id)
+                .then(res => {
+                    setProduct(res.sells);
+                    setLoading(false)
+                })
+                .catch(err => console.log(err))
+        }
+    }, [params._id])
 
     return (
         <>
-
             {!loading ?
                 (<>
-                    <h1 className="heading">Your Active Sells</h1>
-                    {products.filter(x => x.active === true).length > 0 ? (
+                    <h1 className="heading">Active Sells</h1>
+                    {products ? (
                         <Row>
                             {products
-                                .filter(x => x.active === true)
                                 .map(x =>
                                     <Col xs={12} md={6} lg={4} key={x._id.toString()}>
                                         <ProductCard params={x} />
@@ -40,7 +39,6 @@ function ActiveSells({ history }) {
                     }
                 </>) :
                 <Spinner animation="border" />}
-
         </>
     )
 }

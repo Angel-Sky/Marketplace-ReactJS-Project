@@ -6,7 +6,18 @@
 }
 
 #profile-head {
-    background-color: #f8f9fa;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f8f9fa+0,e5e5e5+100 */
+    background: #f8f9fa;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f8f9fa 0%, #e5e5e5 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f8f9fa 0%, #e5e5e5 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f8f9fa 0%, #e5e5e5 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f9fa', endColorstr='#e5e5e5', GradientType=0);
+    /* IE6-9 */
+    margin-bottom: 30px;
 }
 
 .profile-row {
@@ -23,7 +34,6 @@
     width: 150px;
     margin-bottom: 10px;
 }
-
 
 input[type="file"] {
     display: none;
@@ -45,12 +55,11 @@ input[type="file"] {
     }
     #avatar {
         margin-bottom: 20px;
-    }  
+    }
 }
 
 @media (min-width: 840px) {
     .profile-row, .col-md-3 {
         text-align: left;
     }
-    
 }

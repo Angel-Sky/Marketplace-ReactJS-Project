@@ -12,7 +12,6 @@ import Details from './Pages/Details';
 import Edit from './Pages/Edit';
 import CreateSell from './Pages/CreateSell';
 import EditProfile from './Pages/EditProfile';
-import SellerProfile from './Pages/SellerProfile';
 import Error404 from './Pages/Error404';
 
 function App() {
@@ -28,9 +27,8 @@ function App() {
             <Route path="/auth/register" exact component={Register} />
             <Route path="/auth/logout" exact render={LogOut} />
             <Route path='/add-product' exact component={CreateSell} />;
-            <Route path='/profile' exact component={Profile} />;
             <Route path='/profile/edit' exact component={EditProfile} />;
-            <Route path='/profile/:id' component={SellerProfile} />;
+            <Route path='/profile/:id' component={Profile} />;
             <Route component={Error404} />
          </Switch>
          <Footer />

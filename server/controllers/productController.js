@@ -49,7 +49,7 @@ router.get('/specific/:id', async (req, res) => {
     }
 });
 
-router.post('/create', isAuth, async (req, res) => {
+router.post('/create', async (req, res) => {
     let { title, price, description, city, category, image } = req.body;
     try {
         let errors = [];
@@ -114,10 +114,26 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
     }
 })
 
-router.get('/sells/:id', async (req, res) => {
+router.get('/sells/active/:id', async (req, res) => {
+    console.log(req.params.id)
+    try {
+        let userId = '';
+        if (req.params.id) {
+            userId = req.params.id
+        } else {
+            userId = req.user_id
+        }
+        let user = await (await User.findById(userId).populate('createdSells')).toJSON();
+        res.status(200).json({ sells: user.createdSells.filter(x => x.active), user });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
+
+router.get('/sells/archived', async (req, res) => {
     try {
         let user = await (await User.findById(req.user._id).populate('createdSells')).toJSON();
-        res.status(200).json({ sells: user.createdSells, user });
+        res.status(200).json({ sells: user.createdSells.filter(x => x.active == false), user });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -163,10 +179,9 @@ router.get('/wish/:id', async (req, res) => {
 });
 
 router.get('/wishlist/:id', async (req, res) => {
-    console.log(req.user._id)
     try {
         let user = await (await User.findById(req.user._id).populate('wishedProducts')).toJSON();
-        console.log(user)
+
         res.status(200).json({ wishlist: user.wishedProducts });
     } catch (error) {
         res.status(500).json({ message: error.message })
