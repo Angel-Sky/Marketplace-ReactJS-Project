@@ -19,7 +19,7 @@ function EditProfile({ history }) {
             .then(res => setUser(res.user))
     }, [setUser])
 
-    const handleDiscard = () => { history.push('/profile') }
+    const handleDiscard = () => { history.push(`/profile/${user._id}`) }
     const handleChanges = (e) => {
         e.preventDefault();
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -41,7 +41,7 @@ function EditProfile({ history }) {
                     editUserProfile(_id, obj)
                         .then(res => {
                             if (!res.error) {
-                                history.push(`/profile`)
+                                history.push(`/profile/${_id}`);
                             } else {
                                 setLoading(false);
                                 setError(res.error);
@@ -138,7 +138,7 @@ function EditProfile({ history }) {
                         <Button disabled variant="dark" id="wishlist">Wishlist</Button>{' '}
                     </Col>
                     <Col lg={10} sm={12} disabled>
-                        <ActiveSells />
+                        <ActiveSells params={user}/>
                     </Col>
                 </Row>
             </div>

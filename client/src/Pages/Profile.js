@@ -46,7 +46,7 @@ function Profile({ match, history }) {
     useEffect(() => {
         getUserById(match.params.id)
             .then(res => setUser(res.user))
-    }, [setUser])
+    }, [match.params.id])
     console.log('user: ', user)
     return (
         <>

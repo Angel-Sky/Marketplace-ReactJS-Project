@@ -115,7 +115,6 @@ router.patch('/edit/:id', isAuth, async (req, res) => {
 })
 
 router.get('/sells/active/:id', async (req, res) => {
-    console.log(req.params.id)
     try {
         let userId = '';
         if (req.params.id) {

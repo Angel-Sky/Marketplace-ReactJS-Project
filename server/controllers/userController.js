@@ -47,7 +47,7 @@ router.get('/getUserById/:id', async (req, res) => {
         }
         res.status(200).json({user: jsonRes});
     } catch (error) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error });
     }
 })
 

@@ -20,7 +20,7 @@ function ProfileSection({ params }) {
                         <p><FaSellsy /> {params.createdSells} sells in total</p>
                     </Col>
                     <span id="edit-icon">
-                        <Link to={`/profile/edit`}><GrEdit /></Link>
+                        <Link to={`/profile/${params._id}/edit`}><GrEdit /></Link>
                     </span>
                 </Row>
             </div>

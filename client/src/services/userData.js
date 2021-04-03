@@ -27,7 +27,6 @@ export async function getUser() {
 }
 
 export async function getUserActiveSells(id) {
-    console.log(id)
     return (await fetch(`${baseUrl}/products/sells/active/${id}`, {credentials: 'include'})).json();
 }
 
