@@ -19,7 +19,7 @@ function Details({ match, history }) {
             .then(res => setProduct(res), setLoading(false))
             .catch(err => console.log(err))
     }, [productId, setProduct, setLoading])
-   
+   console.log(productId)
     return (
         <>
             <SimpleSider />

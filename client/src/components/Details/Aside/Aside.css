@@ -36,3 +36,13 @@
 .product-details-seller {
     text-align: center;
 }
+
+#guest-msg {
+    font-weight: bold;
+    font-family: serif;
+    font-size: 14pt;
+}
+
+#guest-msg a {
+    text-decoration: underline;
+}

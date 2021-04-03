@@ -31,9 +31,8 @@ router.get('/specific/:id', async (req, res) => {
     try {
         let product = await (await Product.findById(req.params.id)).toJSON()
         let seller = await (await User.findById(product.seller)).toJSON()
-        let user = await User.findById(req.user._id)
         product.addedAt = moment(product.addedAt).format('d MMM YYYY (dddd) HH:mm')
-        res.status(200).json({
+        let jsonRes = {
             ...product,
             name: seller.name,
             phoneNumber: seller.phoneNumber,
@@ -41,9 +40,15 @@ router.get('/specific/:id', async (req, res) => {
             createdSells: seller.createdSells.length,
             avatar: seller.avatar,
             sellerId: seller._id,
-            isSeller: Boolean(req.user._id == product.seller),
-            isWished: user.wishedProducts.includes(req.params.id)
-        });
+            isAuth: false
+        }
+        if (req.user) {
+            let user = await User.findById(req.user._id)
+            jsonRes.isSeller = Boolean(req.user._id == product.seller);
+            jsonRes.isWished = user.wishedProducts.includes(req.params.id)
+            jsonRes.isAuth = true
+        }
+        res.status(200).json(jsonRes);
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

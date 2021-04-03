@@ -34,6 +34,7 @@ function ProductInfo({ params }) {
             <Row>
                 <h1 className="col-lg-10 col-sm-10 product-info-heading">{params.title}</h1>
                 <span id="heartIconDetails" className="col-lg-1 col-sm-1" onClick={onHearthClick}>
+                {params.isAuth && <>
                     {!wish ? (
                         <OverlayTrigger placement="top" overlay={<Tooltip>Add to Wishlist</Tooltip>}>
                             <BsHeart />
@@ -45,6 +46,7 @@ function ProductInfo({ params }) {
                             </OverlayTrigger>
                         )
                     }
+                </>}
 
                 </span>
             </Row>

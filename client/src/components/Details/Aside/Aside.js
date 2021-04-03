@@ -29,7 +29,7 @@ function Aside({ params, history }) {
                 history.push('/profile')
             })
     }
-    console.log(params)
+    // console.log(params)
     return (
         <aside>
             <div className="product-details-seller">
@@ -52,20 +52,24 @@ function Aside({ params, history }) {
                     }
                     <h1 id="price-heading">{params.price} €</h1>
                 </div>
-                <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
-                    <RiMessage3Fill />Contact Seller
+                {params.isAuth ? (<>
+                    <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
+                        <RiMessage3Fill />Contact Seller
                  </Button>{' '}
-                <Link to={`/profile/${params.sellerId}`}>
-                    <Col lg={12}>
-                        <img id="avatar" src={params.avatar} />
-                    </Col>
-                    <Col lg={12}>
-                        <p><BsFillPersonFill /> {params.name}</p>
-                        <p><MdEmail /> {params.email}</p>
-                        <p><MdPhoneAndroid /> {params.phoneNumber}</p>
-                        <p><FaSellsy /> {params.createdSells} sells in total</p>
-                    </Col>
-                </Link>
+                    <Link to={`/profile/${params.sellerId}`}>
+                        <Col lg={12}>
+                            <img id="avatar" src={params.avatar} />
+                        </Col>
+                        <Col lg={12}>
+                            <p><BsFillPersonFill /> {params.name}</p>
+                            <p><MdEmail /> {params.email}</p>
+                            <p><MdPhoneAndroid /> {params.phoneNumber}</p>
+                            <p><FaSellsy /> {params.createdSells} sells in total</p>
+                        </Col>
+                    </Link>
+                </>) : (
+                        <p id="guest-msg"><Link to="/auth/login">Sign In</Link> now to contact the seller!</p>
+                    )}
             </div>
             <Modal show={showMsg} onHide={handleClose}>
                 <Modal.Header closeButton>
