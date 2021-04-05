@@ -10,18 +10,21 @@ const productService = require('../services/productService');
 
 router.get('/', async (req, res) => {
     try {
-        let products = await productService.getAll()
-        products = products.map(x => ({ ...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
-        res.status(200).json(products);
+        const { page } = req.query;
+        let products = await Product.paginate({}, { page: parseInt(page) || 1, limit: 10 });
+        // console.log(products.docs.json())
+        // products.docs = products.docs.map(x => ({ ...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
+        res.status(200).json({ products: products.docs, pages: products.pages });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 })
 
 router.get('/:category', async (req, res) => {
+    const { page } = req.query;
     try {
-        let products = await productService.findByCategory(req.params.category);
-        res.status(200).json(products);
+        let products = await Product.paginate({ category: req.params.category }, { page: parseInt(page) || 1, limit: 10 });
+        res.status(200).json({ products: products.docs, pages: products.pages });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

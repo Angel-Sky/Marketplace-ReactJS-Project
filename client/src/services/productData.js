@@ -1,10 +1,10 @@
 const baseUrl = 'http://localhost:5000';
 
-export async function getAll(category) {
+export async function getAll(page, category) {
     if (category && category !== 'all') {
-        return (await fetch(`${baseUrl}/products/${category}`, { credentials: 'include' })).json();
+        return (await fetch(`${baseUrl}/products/${category}?page=${page}`, { credentials: 'include' })).json();
     } else {
-        return (await fetch(`${baseUrl}/products`, { credentials: 'include' })).json();
+        return (await fetch(`${baseUrl}/products?page=${page}`, { credentials: 'include' })).json();
     }
 }
 

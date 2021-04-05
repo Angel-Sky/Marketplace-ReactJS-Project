@@ -4,7 +4,7 @@ const { cloudinary } = require('../config/cloudinary');
 const { CLOUDINARY_STORAGE } = require('../config/config');
 
 async function getAll() {
-    return await Product.find().lean();
+    return await Product.paginate();
 }
 
 async function findByCategory(category) {

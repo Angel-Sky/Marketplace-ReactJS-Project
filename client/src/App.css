@@ -6,3 +6,7 @@ a:hover {
     color: black;
     text-decoration: none;
 }
+
+.spinner-border {
+    margin: 0 auto;
+}
