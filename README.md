@@ -8,7 +8,7 @@ All for you is a marketplace application for buying and selling services and goo
 
 - MERN (MongoDB, Express.js, React, and Node.js) Solution stack;
 - [Cloudinary](https://cloudinary.com/) as a file storage cloud API;
-- [Unsplash] as image provider;
+- [Unsplash](https://unsplash.com/) as image provider;
 - [React-Bootstrap](https://react-bootstrap.github.io/);
 - Responsive Design;
 - UX & UI;
