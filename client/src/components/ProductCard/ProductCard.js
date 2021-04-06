@@ -1,6 +1,7 @@
 import { Card } from 'react-bootstrap';
 // import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
 function ProductCard({ params }) {
     return (
@@ -14,7 +15,10 @@ function ProductCard({ params }) {
             </Link>
             <Card.Footer>
                 <small className="text-muted">
-                    {params.addedAt} -  <strong>{params.city}</strong>
+                    <Moment format="d MMM YYYY (dddd) HH:mm">
+                        {params.addedAt}
+                    </Moment>
+                    -  <strong>{params.city}</strong>
                     {/* <Link to="" id="heartIcon"><BsHeart /></Link> */}
                 </small>
             </Card.Footer>
