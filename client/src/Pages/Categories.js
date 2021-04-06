@@ -36,16 +36,15 @@ function Categories({ match }) {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        setTimeout(() => {
+        // setTimeout(() => {
             setQuery(e.target.value)
-        }, 800);
+        // }, 800);
     }
 
     return (
         <>
             <div id="sider">
-
-                <input className="col-lg-6" type="text" placeholder="Search..." name="search" onChange={handleSearch}></input>
+                <input className="col-lg-6" type="text" placeholder="Search..." name="search" value={query} onChange={handleSearch} />
             </div>
             {/* <SearchSider /> */}
             <CategoriesNav />
