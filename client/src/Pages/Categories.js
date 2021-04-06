@@ -3,8 +3,9 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import SearchSider from '../components/Siders/SearchSider'
 import CategoriesNav from '../components/Categories/CategoriesNav'
 import ProductCard from '../components/ProductCard/ProductCard';
-import { Col, Spinner } from 'react-bootstrap';
+import { Col, Spinner, DropdownButton, Dropdown } from 'react-bootstrap';
 import { getAll } from '../services/productData';
+import { BiSortDown, BiSort, BiDownArrowAlt, BiUpArrowAlt, BiSortUp } from 'react-icons/bi'
 
 import '../components/Categories/Categories.css';
 import '../components/ProductCard/ProductCard.css';
@@ -15,6 +16,7 @@ function Categories({ match }) {
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState("");
     const [loading, setLoading] = useState(true);
+    const [sort, setSort] = useState('oldest');
 
     useEffect(() => {
         setPage(1);
@@ -26,14 +28,18 @@ function Categories({ match }) {
                 setPage(page => page + 1);
                 setQuery("");
             });
-    }, [currentCategory])
+    }, [currentCategory, setProduct])
 
     useEffect(() => {
         setPage(1);
         setLoading(true);
         getAll(2, currentCategory, query)
             .then(res => {
-                setProduct(products => [...products, ...res.products]);
+                if (query == "") {
+                    setProduct(products => [...products, ...res.products]);
+                } else {
+                    setProduct(res.products)
+                }
                 setLoading(false);
                 setPage(page => page + 1);
             });
@@ -41,12 +47,10 @@ function Categories({ match }) {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        // setTimeout(() => {
         setQuery(e.target.value)
-        // }, 800);
     }
 
-    return (
+      return (
         <>
             <div id="sider">
                 <input className="col-lg-6" type="text" placeholder="Search..." name="search" value={query} onChange={handleSearch} />
@@ -54,15 +58,28 @@ function Categories({ match }) {
             {/* <SearchSider /> */}
             <CategoriesNav />
             <div className="container">
+                <Dropdown id="dropdown-sort">
+                    <Dropdown.Toggle variant="light" id="dropdown-basic">
+                        Sort <BiSort />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => { setSort('oldest') }}>Oldest <BiDownArrowAlt /></Dropdown.Item>
+                        <Dropdown.Item onClick={() => { setSort('newest') }}>Newest <BiUpArrowAlt /></Dropdown.Item>
+                        <Dropdown.Item onClick={() => { setSort('lowerPrice') }}>Price <BiSortDown /></Dropdown.Item>
+                        <Dropdown.Item onClick={() => { setSort('biggerPrice') }}>Price <BiSortUp /> </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 {!loading ?
                     <InfiniteScroll
                         dataLength={products.length}
                         next={() => {
-                            getAll(page, currentCategory)
-                                .then(res => {
-                                    setProduct([...products, ...res.products]);
-                                    setPage(page + 1)
-                                });
+                            if (query == "") {
+                                getAll(page, currentCategory)
+                                    .then(res => {
+                                        setProduct([...products, ...res.products]);
+                                        setPage(page + 1)
+                                    })
+                            }
                         }}
                         hasMore={() => {
                             if (products.length > 0) {
@@ -72,7 +89,20 @@ function Categories({ match }) {
                         }}
                         className="row">
                         {products
-                            .filter(x => x.active == true)
+                            .sort((a, b) => {
+                                if (sort == "oldest") {
+                                    return a.addedAt.localeCompare(b.addedAt)
+                                }
+                                if (sort == "newest") {
+                                    return b.addedAt.localeCompare(a.addedAt)
+                                }
+                                if (sort == "lowerPrice") {
+                                    return b.price - a.price
+                                }
+                                if (sort == "biggerPrice") {
+                                    return a.price - b.price
+                                }
+                            })
                             .map(x =>
                                 <Col xs={12} md={6} lg={3} key={x._id.toString()}>
                                     <ProductCard params={x} />

@@ -55,7 +55,7 @@ function EditProfile({ history }) {
             editUserProfile(_id, obj)
                 .then(res => {
                     if (!res.error) {
-                        history.push(`/profile`)
+                        history.push(`/profile/${_id}`);
                     } else {
                         setLoading(false);
                         setError(res.error);

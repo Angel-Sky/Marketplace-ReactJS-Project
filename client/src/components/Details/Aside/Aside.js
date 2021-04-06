@@ -26,10 +26,10 @@ function Aside({ params, history }) {
         archiveSell(params._id)
             .then(res => {
                 setShowArchive(false);
-                history.push('/profile')
+                history.push(`/profile/${params.seller}`);
             })
     }
-    // console.log(params)
+    console.log(params)
     return (
         <aside>
             <div className="product-details-seller">

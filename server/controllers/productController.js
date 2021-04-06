@@ -10,16 +10,32 @@ const productService = require('../services/productService');
 
 router.get('/', async (req, res) => {
     const { page, search } = req.query;
+    console.log(search)
     try {
         let products;
         if (search !== '' && search !== undefined) {
-            products = await Product.paginate({}, { page: 1, limit: 5 });
-            products.docs = products.docs.filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
+            products = await Product.find();
+            products = products.filter(x => x.active == true)
+            if (!search.includes("sort-")) {
+                products = products.filter(x => x.title.toLowerCase().includes(search.toLowerCase()) || x.city.toLowerCase().includes(search.toLowerCase()))
+            } else if (search == "sort-newest") {
+                products = products.sort((a, b) => b.addedAt - a.addedAt)
+            } else if (search == "sort-oldest") {
+                products = products.sort((a, b) => a.addedAt - b.addedAt)
+            } else if (search == "sort-lowerPrice") {
+                products = products.sort((a, b) => b.price - a.price)
+            } else if (search == 'sort-biggerPrice') {
+                products = products.sort((a, b) => a.price - b.price)
+            }
+
+            res.status(200).json({ products: products, pages: products.pages });
         } else {
             products = await Product.paginate({}, { page: parseInt(page) || 1, limit: 5 });
+            products.docs = products.docs.filter(x => x.active == true)
+            res.status(200).json({ products: products.docs, pages: products.pages });
         }
+
         // products.docs = products.docs.map(x => ({...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
-        res.status(200).json({ products: products.docs, pages: products.pages });
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

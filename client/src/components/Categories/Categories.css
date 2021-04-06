@@ -45,3 +45,17 @@
 .spinner {
     text-align: center;
 }
+
+#dropdown-sort {
+    padding-bottom: 20px;
+    margin-top: -25px;
+}
+
+#dropdown-sort button {
+    border: 1px solid gray;
+    width: 110px;
+}
+
+#dropdown-sort button svg {
+    font-size: 14pt;
+}

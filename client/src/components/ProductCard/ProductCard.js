@@ -9,7 +9,7 @@ function ProductCard({ params }) {
                 <Card.Img variant="top" src={params.image} />
                 <Card.Body>
                     <Card.Title>{params.title}</Card.Title>
-                    <Card.Text>{params.price}€</Card.Text>
+                    <Card.Text>{(params.price).toFixed(2)}€</Card.Text>
                 </Card.Body>
             </Link>
             <Card.Footer>
