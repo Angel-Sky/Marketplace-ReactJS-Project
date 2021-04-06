@@ -13,13 +13,12 @@ router.get('/', async (req, res) => {
     try {
         let products;
         if (search !== '' && search !== undefined) {
-            products = await Product.paginate({}, { page: 1, limit: 10 });
+            products = await Product.paginate({}, { page: 1, limit: 5 });
             products.docs = products.docs.filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
         } else {
-            products = await Product.paginate({}, { page: parseInt(page) || 1, limit: 10 });
+            products = await Product.paginate({}, { page: parseInt(page) || 1, limit: 5 });
         }
-        // console.log(products.docs.json())
-        // products.docs = products.docs.map(x => ({ ...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
+        // products.docs = products.docs.map(x => ({...x, addedAt: moment(x.addedAt).format('d MMM YYYY (dddd) HH:mm') }))
         res.status(200).json({ products: products.docs, pages: products.pages });
     } catch (error) {
         res.status(500).json({ message: error.message })
