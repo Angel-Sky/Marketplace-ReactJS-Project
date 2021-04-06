@@ -8,13 +8,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-   <React.StrictMode>
+   // <React.StrictMode>
       <ContextStore>
          <BrowserRouter>
             <App />
          </BrowserRouter>
-      </ContextStore>
-   </React.StrictMode>,
+      </ContextStore>,
+   // </React.StrictMode>,
    document.getElementById('root')
 );
 

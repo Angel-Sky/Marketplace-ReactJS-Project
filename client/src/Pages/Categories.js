@@ -13,19 +13,41 @@ function Categories({ match }) {
     let currentCategory = match.params.category;
     const [products, setProduct] = useState([])
     const [page, setPage] = useState(1);
- 
+    const [query, setQuery] = useState("");
+
     useEffect(() => {
         setPage(1);
         getAll(1, currentCategory)
             .then(res => {
                 setProduct(res.products)
                 setPage(page => page + 1)
+                setQuery("")
             });
     }, [currentCategory])
 
+    useEffect(() => {
+        setPage(1);
+        getAll(1, currentCategory, query)
+            .then(res => {
+                setProduct(res.products)
+                setPage(page => page + 1)
+            });
+    }, [query])
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        setTimeout(() => {
+            setQuery(e.target.value)
+        }, 800);
+    }
+
     return (
         <>
-            <SearchSider />
+            <div id="sider">
+
+                <input className="col-lg-6" type="text" placeholder="Search..." name="search" onChange={handleSearch}></input>
+            </div>
+            {/* <SearchSider /> */}
             <CategoriesNav />
             <div className="container">
                 <InfiniteScroll
