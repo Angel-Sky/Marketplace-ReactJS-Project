@@ -8,6 +8,7 @@ function ActiveSells({ params, history }) {
     const [products, setProduct] = useState([])
     let [loading, setLoading] = useState(true);
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (params._id) {
             getUserActiveSells(params._id)
                 .then(res => {

@@ -44,6 +44,7 @@ function Profile({ match, history }) {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getUserById(match.params.id)
             .then(res => setUser(res.user))
     }, [match.params.id])

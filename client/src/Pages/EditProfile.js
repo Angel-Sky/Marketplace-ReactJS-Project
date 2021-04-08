@@ -15,6 +15,7 @@ function EditProfile({ history }) {
     const [alertShow, setAlertShow] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getUser()
             .then(res => setUser(res.user))
     }, [setUser])

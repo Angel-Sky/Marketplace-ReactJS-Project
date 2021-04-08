@@ -13,6 +13,7 @@ function Edit({ match, history }) {
     const productId = match.params.id;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getSpecific(productId)
             .then(res => setProduct(res));
     }, [productId])
@@ -76,7 +77,7 @@ function Edit({ match, history }) {
         <>
             <SimpleSider />
             <div className='container'>
-                <h1 className="heading">Edit {product.title}</h1>
+                <h1 className="heading">Edit product</h1>
                 <Form onSubmit={onSubmitHandler}>
                     {alertShow &&
                         <Alert variant="danger" onClose={() => setAlertShow(false)} dismissible>

@@ -10,6 +10,7 @@ function ArchivedSells({ history }) {
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getUserArchivedSells()
             .then(res => {
                 setProduct(res.sells);

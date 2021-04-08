@@ -6,6 +6,7 @@ import { FaSellsy } from 'react-icons/fa'
 import { GrEdit } from 'react-icons/gr';
 
 function ProfileSection({ params }) {
+    console.log(params)
     return (
         <div id="profile-head">
             <div className="container">
@@ -17,7 +18,7 @@ function ProfileSection({ params }) {
                         <p><BsFillPersonFill /> {params.name}</p>
                         <p><MdEmail /> {params.email}</p>
                         <p><MdPhoneAndroid /> {params.phoneNumber}</p>
-                        <p><FaSellsy /> {params.createdSells} sells in total</p>
+                        <p><FaSellsy /> {params.totalSells} sells in total</p>
                     </Col>
                     <span id="edit-icon">
                         <Link to={`/profile/${params._id}/edit`}><GrEdit /></Link>

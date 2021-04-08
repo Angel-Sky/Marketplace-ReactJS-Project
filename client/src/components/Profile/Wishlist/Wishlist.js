@@ -11,6 +11,7 @@ function Wishlist() {
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getUserWishlist()
             .then(res => {
                 setProduct(res.wishlist.filter(x => x.active == true));

@@ -15,6 +15,7 @@ function Details({ match, history }) {
     let [loading, setLoading] = useState(true);
    
     useEffect(() => {
+        window.scrollTo(0, 0)
         getSpecific(productId)
             .then(res => setProduct(res), setLoading(false))
             .catch(err => console.log(err))
