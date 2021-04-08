@@ -27,11 +27,16 @@ async function loginUser({ email, password }) {
     let hasValidPass = await bcrypt.compare(password, user.password);
     if (!hasValidPass) throw { message: "Invalid email or password" }
 
-    let token = jwt.sign({ _id: user._id, name:user.name, email: user.email, phoneNumber: user.phoneNumber, createdSells: user.createdSells.length, avatar: user.avatar }, SECRET);
+    let token = jwt.sign({ _id: user._id, email: user.email, phoneNumber: user.phoneNumber, createdSells: user.createdSells.length, avatar: user.avatar }, SECRET);
     return token;
+}
+
+async function getUser(id) {
+    return await User.findById(id).lean()
 }
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getUser
 }

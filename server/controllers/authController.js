@@ -38,10 +38,14 @@ router.get('/logout', (req, res) => {
     res.status(200).json({ message: 'Successfully logged out' })
 });
 
-router.get('/getUser', (req, res) => {
-    console.log(req.user)
-    if (req.user) return res.status(200).json({user: req.user})
-    return res.status(200).json({message: "Not loged in"})
+router.get('/getUser', async (req, res) => {
+    if (req.user) {
+        let user = await authService.getUser(req.user._id);
+        res.status(200).json({user: {_id: user._id, name: user.name, email: user.email, 
+            phoneNumber: user.phoneNumber, createdSells: user.createdSells.length, avatar: user.avatar}})
+    } else {
+        res.status(200).json({message: "Not loged in"})
+    }
 })
 
 
