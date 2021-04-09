@@ -13,6 +13,7 @@ article img {
 
 .me {
     text-align: right;
+    margin: 20px 0px;
 }
 
 .me .message {
@@ -27,6 +28,7 @@ article img {
 
 .not-me {
     text-align: left;
+    margin: 20px 0px;
 }
 
 .not-me .message {
@@ -37,4 +39,9 @@ article img {
     padding: 10px;
     border-radius: 100px;
     border: 1px solid #8080804a;
+}
+
+.chat-selected-footer textarea {
+    height: 65px;
+    resize: none;
 }
