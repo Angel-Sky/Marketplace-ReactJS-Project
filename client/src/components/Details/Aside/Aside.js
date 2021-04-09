@@ -7,14 +7,15 @@ import { MdArchive } from 'react-icons/md'
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
 import { FaSellsy } from 'react-icons/fa'
-import { archiveSell } from '../../../services/productData'
+import { archiveSell } from '../../../services/productData';
+import { createChatRoom } from '../../../services/messagesData'
 import './Aside.css';
 
 
 function Aside({ params, history }) {
     const [showMsg, setShowMdg] = useState(false);
     const [showArchive, setShowArchive] = useState(false);
-
+    const [message, setMessage] = useState("");
     const handleClose = () => setShowMdg(false);
     const handleShow = () => setShowMdg(true);
 
@@ -28,6 +29,19 @@ function Aside({ params, history }) {
                 setShowArchive(false);
                 history.push(`/profile/${params.seller}`);
             })
+    }
+
+    const handleMsgChange = (e) => {
+        e.preventDefault();
+        setMessage(e.target.value)
+    }
+    const onMsgSent = (e) => {
+        e.preventDefault();
+        createChatRoom(params.sellerId, message)
+            .then((res) => {
+                history.push(`/messages/${res.messageId}`)
+            })
+            .catch(err => console.log(err))
     }
     console.log(params)
     return (
@@ -78,13 +92,13 @@ function Aside({ params, history }) {
                 <Modal.Body>
                     <Form>
                         <Form.Group>
-                            <Form.Control as="textarea" rows={3} />
+                            <Form.Control as="textarea" name="textarea" onChange={handleMsgChange} rows={3} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="dark" onClick={onMsgSent}>Sent</Button>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Link to="/"><Button variant="dark">Sent</Button></Link>
                 </Modal.Footer>
             </Modal>
 
