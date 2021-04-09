@@ -2,9 +2,11 @@
 
 All for you is a marketplace application for buying and selling services and goods such as electronics, fashion items, furniture, household goods, cars, properties and others. Users can sign up and advertise their goods or contact other sellers in case they want to receive more information about the proposed product or to buy it. They can also add products to Wishlist, archive their old sells or unarchive them if they want to be public again after some time. 
 
+![Preview](https://res.cloudinary.com/silenceiv/image/upload/v1617894482/all-for-you-mockup_dafr6c.jpg)
+
 # Tech Stack
 
-![alt text](https://res.cloudinary.com/silenceiv/image/upload/c_fill,h_205,w_512/v1617484581/mern_sakbwj.png)
+![MERN stack](https://res.cloudinary.com/silenceiv/image/upload/c_fill,h_205,w_512/v1617484581/mern_sakbwj.png)
 
 - MERN (MongoDB, Express.js, React, and Node.js) Solution stack;
 - [Cloudinary](https://cloudinary.com/) as a file storage cloud API;
