@@ -13,6 +13,7 @@ import Edit from './Pages/Edit';
 import CreateSell from './Pages/CreateSell';
 import EditProfile from './Pages/EditProfile';
 import Error404 from './Pages/Error404';
+import Messages from './Pages/Messages'
 
 function App() {
    return (
@@ -29,6 +30,8 @@ function App() {
             <Route path='/add-product' exact component={CreateSell} />;
             <Route path='/profile/:id' exact component={Profile} />;
             <Route path='/profile/:id/edit' exact component={EditProfile} />;
+            <Route path='/messages' exact component={Messages} />;
+            <Route path='/messages/:id' exact component={Messages} />;
             <Route component={Error404} />
          </Switch>
          <Footer />

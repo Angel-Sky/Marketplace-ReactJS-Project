@@ -10,3 +10,7 @@ export async function createChatRoom(receiver, message) {
         body: JSON.stringify({message: message, receiver: receiver})
     })).json();
 }
+
+export async function getUserConversations() {
+    return (await fetch(`${baseUrl}/messages/getUserConversations`, { credentials: 'include' })).json();
+}

@@ -1,0 +1,23 @@
+aside img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+aside {
+    border-right: 1px solid #8080804a;
+}
+
+aside h3 {
+    font-family: serif;
+    text-align: center;
+    border-bottom: 1px solid #8080804a;
+    padding: 15px
+}
+
+.chat-connections {
+    border-bottom: 1px solid #8080804a;
+    padding: 5px 25px;
+    margin: 5px 10px;
+}

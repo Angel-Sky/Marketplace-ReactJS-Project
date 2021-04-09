@@ -1,0 +1,40 @@
+article img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.chat-selected-header {
+    border-bottom: 1px solid #8080804a;
+    padding: 4px 25px;
+    margin: 6px 10px;
+}
+
+.me {
+    text-align: right;
+}
+
+.me .message {
+    text-align: right;
+    width: 50%;
+    font-size: 9pt;
+    background: #5d5d5d;
+    padding: 10px;
+    border-radius: 100px;
+    color: white;
+}
+
+.not-me {
+    text-align: left;
+}
+
+.not-me .message {
+    text-align: left;
+    width: 50%;
+    font-size: 9pt;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid #8080804a;
+}
