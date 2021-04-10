@@ -20,6 +20,7 @@ function Categories({ match }) {
     useEffect(() => {
         setPage(1);
         setLoading(true);
+        setQuery("")
         getAll(1, currentCategory)
             .then(res => {
                 setProduct(res.products);

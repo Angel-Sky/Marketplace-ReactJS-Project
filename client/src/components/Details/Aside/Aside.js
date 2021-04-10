@@ -65,7 +65,7 @@ function Aside({ params, history }) {
 
                         </>
                     }
-                    <h1 id="price-heading">{params.price} €</h1>
+                    {params.price && <h1 id="price-heading">{(params.price).toFixed(2)}€</h1>}
                 </div>
                 {params.isAuth ? (<>
                     {!params.isSeller &&
