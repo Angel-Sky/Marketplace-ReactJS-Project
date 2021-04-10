@@ -9,7 +9,7 @@ aside {
     border-right: 1px solid #8080804a;
 }
 
-aside h3 {
+aside h3, aside h5 {
     font-family: serif;
     text-align: center;
     border-bottom: 1px solid #8080804a;

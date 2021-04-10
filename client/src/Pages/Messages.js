@@ -65,6 +65,8 @@ function Messages({ match }) {
             <Row>
                 <aside className="col-lg-4 col-md-4">
                     <h3>Conversations</h3>
+                    {conversations.length > 1 ? 
+                    <>
                     {conversations.map(x =>
                         <div className="chat-connections" key={x.chats._id}>
                             <Link onClick={() => setIsSelected(true)} to={`/messages/${x.chats._id}`}>
@@ -76,6 +78,10 @@ function Messages({ match }) {
                             </Link>
                         </div>)
                     }
+                    </>
+                    :
+                    <h5>No messages yet</h5>
+                }
                 </aside>
                 <article className="col-lg-8 col-md-8">
                     {isSelected &&

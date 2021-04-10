@@ -43,7 +43,7 @@ function Aside({ params, history }) {
             })
             .catch(err => console.log(err))
     }
-    console.log(params)
+
     return (
         <aside>
             <div className="product-details-seller">
@@ -67,9 +67,11 @@ function Aside({ params, history }) {
                     <h1 id="price-heading">{params.price} €</h1>
                 </div>
                 {params.isAuth ? (<>
-                    <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
-                        <RiMessage3Fill />Contact Seller
-                 </Button>{' '}
+                    {!params.isSeller &&
+                        <Button variant="dark" className="col-lg-10" id="btnContact" onClick={handleShow}>
+                            <RiMessage3Fill />Contact Seller
+                        </Button>
+                    }
                     <Link to={`/profile/${params.sellerId}`}>
                         <Col lg={12}>
                             <img id="avatar" src={params.avatar} />
