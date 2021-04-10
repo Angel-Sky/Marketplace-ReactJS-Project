@@ -11,7 +11,7 @@ const chatRoomSchema = new mongoose.Schema({
         ref: 'User'
     },
     conversation: [{
-        buyer: {
+        senderId: {
             type: mongoose.Types.ObjectId,
             ref: 'User'
         },

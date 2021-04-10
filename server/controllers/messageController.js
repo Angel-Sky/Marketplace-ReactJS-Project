@@ -6,29 +6,27 @@ const messageService = require('../services/messageService')
 router.post('/createChatRoom', async (req, res) => {
     const { message, receiver } = req.body;
     try {
-        let chatRoom = await messageService.createChatRoom(req.user._id, receiver, message)
+        let chatRoom = await messageService.createChatRoom(req.user._id, receiver)
+        await ChatRoom.updateOne({ _id: chatRoom._id }, { $push: { conversation: { senderId: req.user._id, message } } })
         res.status(200).json({ messageId: chatRoom._id })
-        await User.updateOne({ _id: req.user._id }, { $push: { chatRooms: chatRoom._id } });
-        await User.updateOne({ _id: receiver }, { $push: { chatRooms: chatRoom._id } });
-
     } catch (error) {
         res.status(500).json(error)
     }
 })
 
 router.get('/getUserConversations', async (req, res) => {
-    // let userChats = await ChatRoom.find({ $or: [{ buyer: req.user._id }, { seller: req.user._id }] });
-    let userChats = await ChatRoom.find();
-    let isBuyer = userChats.filter(x => x.buyer == req.user._id).length >= 1 ? true : false
-    if (isBuyer) {
-        userChats = await ChatRoom.find({buyer: req.user._id}).populate("seller")
-    } else {
-        userChats = await ChatRoom.find({seller: req.user._id}).populate("buyer")
-    }
-    // let userChats = await ChatRoom.find({buyer: req.user._id}).populate("seller")
-    // let user = await User.findById(req.user._id).populate('chatRooms');
-    // let userConv = user.chatRooms;
-    res.status(200).json({chats: userChats, isBuyer})
+    let allChats = await ChatRoom.find().populate("buyer").populate("seller");
+    let userChats = allChats.filter(x => x.buyer._id == req.user._id || x.seller._id == req.user._id)
+    let checkedChats = userChats.map(x => ({ chats: x, isBuyer: (x.buyer._id == req.user._id), myId: req.user._id }))
+    res.status(200).json(checkedChats)
+})
+
+router.post('/sendMessage', async (req, res) => {
+    const { chatId, message } = req.body;
+    let chat = await ChatRoom.updateOne({ _id: chatId }, { $push: { conversation: { senderId: req.user._id, message } } })
+
+    console.log(chat)
+    res.status(200).json({ sender: req.user._id })
 })
 
 module.exports = router;
