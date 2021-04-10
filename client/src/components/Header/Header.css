@@ -59,7 +59,7 @@
     font-size: 20pt;
 }
 
-.dropdown-item.active, .dropdown-item.active svg {
+.dropdown-item.active, .dropdown-item:focus, .dropdown-item.active svg {
     color: white;
     background-color: #343a40;
 }

@@ -41,7 +41,7 @@ function Messages({ match }) {
             setSelected(conversations.find(x => x.chats._id === chatId))
         }
     }, [isSelected, chatId, setSelected])
-   
+
     function handleMsgSubmit(e) {
         e.preventDefault();
         sendMessage(chatId, message)
@@ -49,7 +49,7 @@ function Messages({ match }) {
                 setAlert("Message sent!");
                 setAlertShow(true);
                 setMessage("");
-                setSelected(selected, selected.chats.conversation.push({message, senderId: res.sender}))
+                setSelected(selected, selected.chats.conversation.push({ message, senderId: res.sender }))
                 setTimeout(() => {
                     setAlert(null);
                     setAlertShow(false);
@@ -64,34 +64,38 @@ function Messages({ match }) {
             <Row>
                 <aside className="col-lg-4 col-md-4">
                     <h3>Conversations</h3>
-                    {conversations.length >= 1 ? 
-                    <>
-                    {conversations.map(x =>
-                        <div className="chat-connections" key={x.chats._id}>
-                            <Link onClick={() => setIsSelected(true)} to={`/messages/${x.chats._id}`}>
-                                {x.isBuyer ?
-                                    <><img src={x.chats.seller.avatar} alt="user-avatar" /> {x.chats.seller.name}</>
-                                    :
-                                    <><img src={x.chats.buyer.avatar} alt="user-avatar" /> {x.chats.buyer.name}</>
-                                }
-                            </Link>
-                        </div>)
+                    {conversations.length >= 1 ?
+                        <>
+                            {conversations.map(x =>
+                                <div className="chat-connections" key={x.chats._id}>
+                                    <Link onClick={() => setIsSelected(true)} to={`/messages/${x.chats._id}`}>
+                                        {x.isBuyer ?
+                                            <><img src={x.chats.seller.avatar} alt="user-avatar" /> <span>{x.chats.seller.name}</span></>
+                                            :
+                                            <><img src={x.chats.buyer.avatar} alt="user-avatar" /> <span>{x.chats.buyer.name}</span></>
+                                        }
+                                    </Link>
+                                </div>)
+                            }
+                        </>
+                        :
+                        <h5>No messages yet</h5>
                     }
-                    </>
-                     :
-                    <h5>No messages yet</h5> 
-                } 
                 </aside>
                 <article className="col-lg-8 col-md-8">
                     {isSelected &&
                         <>
                             <div className="chat-selected-header col-lg-12">
                                 {selected.isBuyer ?
-                                    <><img src={selected.chats.seller.avatar} alt="user-avatar" />
-                                        {selected.chats.seller.name}</>
+                                    <Link to={`/profile/${selected.chats.seller._id}`}>
+                                        <img src={selected.chats.seller.avatar} alt="user-avatar" />
+                                        <span>{selected.chats.seller.name}</span>
+                                    </Link>
                                     :
-                                    <><img src={selected.chats.buyer.avatar} alt="user-avatar" />
-                                        {selected.chats.buyer.name}</>
+                                    <Link to={`/profile/${selected.chats.buyer._id}`}>
+                                        <img src={selected.chats.buyer.avatar} alt="user-avatar" />
+                                        <span>{selected.chats.buyer.name}</span>
+                                    </Link>
                                 }
                             </div>
                             {alertShow &&
