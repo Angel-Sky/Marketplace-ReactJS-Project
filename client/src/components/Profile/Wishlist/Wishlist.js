@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import SimpleSider from '../../Siders/SimpleSider'
 import ProductCard from '../../ProductCard/ProductCard';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import { getUserWishlist } from '../../../services/userData';
@@ -14,7 +13,7 @@ function Wishlist() {
         window.scrollTo(0, 0);
         getUserWishlist()
             .then(res => {
-                setProduct(res.wishlist.filter(x => x.active == true));
+                setProduct(res.wishlist.filter(x => x.active === true));
                 setLoading(false)
             })
             .catch(err => console.log(err))

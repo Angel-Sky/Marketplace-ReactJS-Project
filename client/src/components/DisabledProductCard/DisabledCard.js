@@ -15,6 +15,7 @@ function DisabledCard({ params, history }) {
                 history.push(`/categories/${params.category}/${params._id}/details`)
                 setShow(false);
             })
+            .catch(err => console.log(err))
     }
 
 

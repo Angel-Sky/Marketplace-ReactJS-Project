@@ -7,7 +7,7 @@ function ProductInfo({ params }) {
     const [wish, setWish] = useState(false);
 
     useEffect(() => {
-        if (params.isWished == true) {
+        if (params.isWished === true) {
             setWish(true)
         } else {
             setWish(false)
@@ -15,16 +15,18 @@ function ProductInfo({ params }) {
     }, [params.isWished, setWish])
 
     const onHearthClick = () => {
-        if (wish == false) {
+        if (wish === false) {
             wishProduct(params._id)
                 .then(res => {
                     setWish(true);
                 })
+                .catch(err => console.log(err))
         } else {
             wishProduct(params._id)
                 .then(res => {
                     setWish(false);
                 })
+                .catch(err => console.log(err))
         }
     }
 

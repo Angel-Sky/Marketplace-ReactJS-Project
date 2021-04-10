@@ -4,6 +4,7 @@ function LogOut({ history }) {
         .then(res => {
             history.push('/')
         })
+        .catch(err => console.log(err))
 }
 
 export default LogOut;

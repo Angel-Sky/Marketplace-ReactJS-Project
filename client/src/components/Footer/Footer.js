@@ -1,8 +1,6 @@
 import './Footer.css';
 import { AiFillInstagram, AiFillLinkedin } from 'react-icons/ai'; 
-import { FaFacebook, FaFacebookSquare, FaInstagram } from 'react-icons/fa';
-import {ImLinkedin2} from 'react-icons/im'
-import {GrInstagram} from 'react-icons/gr'
+import { FaFacebook } from 'react-icons/fa';
 
 function Footer() {
     return (

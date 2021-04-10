@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
-import { Context } from '../ContextStore'
+import { useEffect, useState } from 'react';
 import ActiveSells from '../components/Profile/Sells/ActiveSells';
 import { getUser, editUserProfile } from '../services/userData';
 import { Col, Row, Button, OverlayTrigger, Tooltip, Spinner, Alert } from 'react-bootstrap';
@@ -18,6 +17,7 @@ function EditProfile({ history }) {
         window.scrollTo(0, 0);
         getUser()
             .then(res => setUser(res.user))
+            .catch(err => console.log(err))
     }, [setUser])
 
     const handleDiscard = () => { history.push(`/profile/${user._id}`) }
@@ -94,7 +94,7 @@ function EditProfile({ history }) {
                                     <OverlayTrigger placement="bottom"
                                         overlay={<Tooltip>Click to select a photo</Tooltip>}
                                     >
-                                        <img id="avatar" src={user.avatar} />
+                                        <img id="avatar" src={user.avatar} alt="user-avatar"/>
                                     </OverlayTrigger>
                                 </label>
                                 <input id="file-upload" type="file" name="avatar" onChangeCapture={handleChanges} />

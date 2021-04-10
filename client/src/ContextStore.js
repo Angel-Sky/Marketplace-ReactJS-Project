@@ -1,10 +1,10 @@
-import React, { useState, useEffect, createContext, useMemo } from 'react';
-import { useCookies } from 'react-cookie'
+import React, { useState, useEffect, useMemo } from 'react';
+// import { useCookies } from 'react-cookie'
 export const Context = React.createContext();
 
 export const ContextStore = ({ children }) => {
     let initialValue = null;
-    const [cookies, setCookie, removeCookie] = useCookies(['USER_SESSION']);
+    // const [cookies, setCookie, removeCookie] = useCookies(['USER_SESSION']);
     const [userData, setUserData] = useState(initialValue)
     
     useEffect(() => {
@@ -16,7 +16,7 @@ export const ContextStore = ({ children }) => {
         //}
     }, [])
 
-    console.log(userData)
+    // console.log(userData)
     const providerValue = useMemo(() => ({ userData, setUserData }), [userData, setUserData])
 
     return (

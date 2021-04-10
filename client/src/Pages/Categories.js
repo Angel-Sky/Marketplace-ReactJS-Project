@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component'
-import SearchSider from '../components/Siders/SearchSider'
 import CategoriesNav from '../components/Categories/CategoriesNav'
 import ProductCard from '../components/ProductCard/ProductCard';
-import { Col, Spinner, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Col, Spinner, Dropdown } from 'react-bootstrap';
 import { getAll } from '../services/productData';
 import { BiSortDown, BiSort, BiDownArrowAlt, BiUpArrowAlt, BiSortUp } from 'react-icons/bi'
-
+import '../components/Siders/SearchSider.css'
 import '../components/Categories/Categories.css';
 import '../components/ProductCard/ProductCard.css';
 
@@ -27,7 +26,8 @@ function Categories({ match }) {
                 setLoading(false);
                 setPage(page => page + 1);
                 setQuery("");
-            });
+            })
+            .catch(err => console.log(err));
     }, [currentCategory, setProduct])
 
     useEffect(() => {
@@ -35,15 +35,16 @@ function Categories({ match }) {
         setLoading(true);
         getAll(2, currentCategory, query)
             .then(res => {
-                if (query == "") {
+                if (query === "") {
                     setProduct(products => [...products, ...res.products]);
                 } else {
                     setProduct(res.products)
                 }
                 setLoading(false);
                 setPage(page => page + 1);
-            });
-    }, [query])
+            })
+            .catch(err => console.log(err));
+    }, [query, currentCategory])
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -55,7 +56,6 @@ function Categories({ match }) {
             <div id="sider">
                 <input className="col-lg-6" type="text" placeholder="Search..." name="search" value={query} onChange={handleSearch} />
             </div>
-            {/* <SearchSider /> */}
             <CategoriesNav />
             <div className="container">
                 <Dropdown id="dropdown-sort">
@@ -73,7 +73,7 @@ function Categories({ match }) {
                     <InfiniteScroll
                         dataLength={products.length}
                         next={() => {
-                            if (query == "") {
+                            if (query === "") {
                                 getAll(page, currentCategory)
                                     .then(res => {
                                         setProduct([...products, ...res.products]);
@@ -90,16 +90,16 @@ function Categories({ match }) {
                         className="row">
                         {products
                             .sort((a, b) => {
-                                if (sort == "oldest") {
+                                if (sort === "oldest") {
                                     return a.addedAt.localeCompare(b.addedAt)
                                 }
-                                if (sort == "newest") {
+                                if (sort === "newest") {
                                     return b.addedAt.localeCompare(a.addedAt)
                                 }
-                                if (sort == "lowerPrice") {
+                                if (sort === "lowerPrice") {
                                     return b.price - a.price
                                 }
-                                if (sort == "biggerPrice") {
+                                if (sort === "biggerPrice") {
                                     return a.price - b.price
                                 }
                             })

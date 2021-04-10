@@ -6,13 +6,12 @@ import { FaSellsy } from 'react-icons/fa'
 import { GrEdit } from 'react-icons/gr';
 
 function ProfileSection({ params }) {
-    console.log(params)
     return (
         <div id="profile-head">
             <div className="container">
                 <Row className="profile-row">
                     <Col lg={2} md={5} sm={12}>
-                        <img id="avatar" src={params.avatar} />
+                        <img id="avatar" alt="avatar" src={params.avatar} />
                     </Col>
                     <Col lg={3} md={3} sm={12}>
                         <p><BsFillPersonFill /> {params.name}</p>

@@ -15,7 +15,8 @@ function Edit({ match, history }) {
     useEffect(() => {
         window.scrollTo(0, 0);
         getSpecific(productId)
-            .then(res => setProduct(res));
+            .then(res => setProduct(res))
+            .catch(err => console.log(err));
     }, [productId])
 
     const onChangeHandler = (e) => {

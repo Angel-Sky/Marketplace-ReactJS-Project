@@ -1,24 +1,38 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
 import ActiveSells from './Sells/ActiveSells'
-import { Col, Row, Button, Spinner, Form, Modal } from 'react-bootstrap';
+import { Col, Row, Button, Form, Modal } from 'react-bootstrap';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
 import { FaSellsy } from 'react-icons/fa'
 import { RiMessage3Fill } from 'react-icons/ri';
+import { createChatRoom } from '../../services/messagesData'
 
-function SellerProfile({ params }) {
+function SellerProfile({ params, history }) {
     const [showMsg, setShowMdg] = useState(false);
+    const [message, setMessage] = useState("");
     const handleClose = () => setShowMdg(false);
     const handleShow = () => setShowMdg(true);
 
+    const handleMsgChange = (e) => {
+        e.preventDefault();
+        setMessage(e.target.value)
+    }
+
+    const onMsgSent = (e) => {
+        e.preventDefault();
+        createChatRoom(params._id, message)
+            .then((res) => {
+                history.push(`/messages`)
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <>
             <div id="profile-head">
                 <div className="container">
                     <Row className="profile-row">
                         <Col lg={2} md={5} sm={12}>
-                            <img id="avatar" src={params.avatar} />
+                            <img id="avatar" alt="avatar" src={params.avatar} />
                         </Col>
                         <Col lg={2} md={3} sm={12}>
                             <p><BsFillPersonFill /> {params.name}</p>
@@ -48,16 +62,15 @@ function SellerProfile({ params }) {
                 <Modal.Body>
                     <Form>
                         <Form.Group>
-                            <Form.Control as="textarea" rows={3} />
+                            <Form.Control as="textarea" name="textarea" onChange={handleMsgChange} rows={3} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="dark" onClick={onMsgSent}>Sent</Button>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Link to="/"><Button variant="dark">Sent</Button></Link>
                 </Modal.Footer>
             </Modal>
-
         </>
     )
 }

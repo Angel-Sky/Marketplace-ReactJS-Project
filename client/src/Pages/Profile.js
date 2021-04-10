@@ -5,15 +5,9 @@ import ActiveSells from '../components/Profile/Sells/ActiveSells';
 import ArchivedSells from '../components/Profile/Sells/ArchivedSells'
 import SellerProfile from '../components/Profile/SellerProfile'
 import { getUserById } from '../services/userData';
-import { Link } from 'react-router-dom';
-import { Col, Row, Button, Modal, Form } from 'react-bootstrap';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { MdEmail, MdPhoneAndroid } from 'react-icons/md'
-import { FaSellsy } from 'react-icons/fa'
-import { RiMessage3Fill } from 'react-icons/ri';
-import '../components/Profile/Profile.css';
-import ProductCard from '../components/ProductCard/ProductCard'
+import { Col, Row, Button } from 'react-bootstrap';
 
+import '../components/Profile/Profile.css';
 
 function Profile({ match, history }) {
     const [active, setActive] = useState(true);
@@ -21,9 +15,9 @@ function Profile({ match, history }) {
     const [wishlist, setWishlist] = useState(false);
     const [user, setUser] = useState([]);
 
-    const [showMsg, setShowMdg] = useState(false);
-    const handleClose = () => setShowMdg(false);
-    const handleShow = () => setShowMdg(true);
+    // const [showMsg, setShowMdg] = useState(false);
+    // const handleClose = () => setShowMdg(false);
+    // const handleShow = () => setShowMdg(true);
 
     const handleActive = () => {
         setActive(true)
@@ -47,8 +41,9 @@ function Profile({ match, history }) {
         window.scrollTo(0, 0);
         getUserById(match.params.id)
             .then(res => setUser(res.user))
+            .catch(err => console.log(err))
     }, [match.params.id])
-    console.log('user: ', user)
+   
     return (
         <>
             {user.isMe ? (
@@ -70,7 +65,7 @@ function Profile({ match, history }) {
                 </div>
                 </>
             ) : ( 
-                <SellerProfile params={user}/>
+                <SellerProfile params={user} history={history}/>
             )}
 
         </>

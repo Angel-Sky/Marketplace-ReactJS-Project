@@ -8,7 +8,7 @@ function SubmitForm({ chatId }) {
 
     function handleMsgSubmit(e) {
         e.preventDefault();
-        console.log(text)
+        // console.log(text)
         socket.emit('chat message', text);
     }
 

@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 import { Context } from '../../ContextStore';
-import { Navbar, NavDropdown, Nav, Card, CardDeck, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { BsFillPersonFill, BsFillGridFill, BsFillHeartFill, BsFillEnvelopeFill, BsFillPlusCircleFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsFillEnvelopeFill, BsFillPlusCircleFill } from 'react-icons/bs';
 import { IoLogOut } from 'react-icons/io5'
-import { FaUserCircle } from 'react-icons/fa'
 
 import './Header.css'
 function Header() {
@@ -36,7 +35,7 @@ function Header() {
                                 </OverlayTrigger>
                             </NavLink>
 
-                            <NavDropdown title={<img id="navImg" src={userData.avatar}/>} drop="left" id="collasible-nav-dropdown">
+                            <NavDropdown title={<img id="navImg" src={userData.avatar} alt="user-avatar"/>} drop="left" id="collasible-nav-dropdown">
                                 <NavLink className="dropdown-item" to={`/profile/${userData._id}`}>
                                     <BsFillPersonFill />Profile
                                 </NavLink>

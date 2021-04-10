@@ -18,9 +18,10 @@ function Details({ match, history }) {
         window.scrollTo(0, 0)
         getSpecific(productId)
             .then(res => setProduct(res), setLoading(false))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+            
     }, [productId, setProduct, setLoading])
-   console.log(productId)
+    
     return (
         <>
             <SimpleSider />

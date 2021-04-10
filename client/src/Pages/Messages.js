@@ -34,15 +34,14 @@ function Messages({ match }) {
     useEffect(() => {
         getUserConversations()
             .then(res => {
-                console.log(res)
                 setConversations(res);
             })
+            .catch(err => console.log(err))
         if (isSelected) {
-            setSelected(conversations.find(x => x.chats._id == chatId))
+            setSelected(conversations.find(x => x.chats._id === chatId))
         }
     }, [isSelected, chatId, setSelected])
-    console.log('selected: ', selected)
-
+   
     function handleMsgSubmit(e) {
         e.preventDefault();
         sendMessage(chatId, message)
@@ -65,33 +64,33 @@ function Messages({ match }) {
             <Row>
                 <aside className="col-lg-4 col-md-4">
                     <h3>Conversations</h3>
-                    {conversations.length > 1 ? 
+                    {conversations.length >= 1 ? 
                     <>
                     {conversations.map(x =>
                         <div className="chat-connections" key={x.chats._id}>
                             <Link onClick={() => setIsSelected(true)} to={`/messages/${x.chats._id}`}>
                                 {x.isBuyer ?
-                                    <><img src={x.chats.seller.avatar} /> {x.chats.seller.name}</>
+                                    <><img src={x.chats.seller.avatar} alt="user-avatar" /> {x.chats.seller.name}</>
                                     :
-                                    <><img src={x.chats.buyer.avatar} /> {x.chats.buyer.name}</>
+                                    <><img src={x.chats.buyer.avatar} alt="user-avatar" /> {x.chats.buyer.name}</>
                                 }
                             </Link>
                         </div>)
                     }
                     </>
-                    :
-                    <h5>No messages yet</h5>
-                }
+                     :
+                    <h5>No messages yet</h5> 
+                } 
                 </aside>
                 <article className="col-lg-8 col-md-8">
                     {isSelected &&
                         <>
                             <div className="chat-selected-header col-lg-12">
                                 {selected.isBuyer ?
-                                    <><img src={selected.chats.seller.avatar} />
+                                    <><img src={selected.chats.seller.avatar} alt="user-avatar" />
                                         {selected.chats.seller.name}</>
                                     :
-                                    <><img src={selected.chats.buyer.avatar} />
+                                    <><img src={selected.chats.buyer.avatar} alt="user-avatar" />
                                         {selected.chats.buyer.name}</>
                                 }
                             </div>
@@ -104,7 +103,7 @@ function Messages({ match }) {
                             }
                             <div className="chat-selected-body col-lg-12">
                                 {selected.chats.conversation.map(x =>
-                                    <div className={selected.myId == x.senderId ? 'me' : "not-me"} key={x._id}>
+                                    <div className={selected.myId === x.senderId ? 'me' : "not-me"} key={x._id}>
                                         <span className="message">{x.message}</span>
                                     </div>
                                 )}

@@ -13,7 +13,7 @@ function Login({ history }) {
         email: "",
         password: ""
     });
-    const { userData, setUserData } = useContext(Context)
+    const { setUserData } = useContext(Context)
 
     const handleChanges = (e) => {
         e.preventDefault();

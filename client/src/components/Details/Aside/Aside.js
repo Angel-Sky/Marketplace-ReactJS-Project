@@ -29,6 +29,7 @@ function Aside({ params, history }) {
                 setShowArchive(false);
                 history.push(`/profile/${params.seller}`);
             })
+            .catch(err => console.log(err))
     }
 
     const handleMsgChange = (e) => {
@@ -74,7 +75,7 @@ function Aside({ params, history }) {
                     }
                     <Link to={`/profile/${params.sellerId}`}>
                         <Col lg={12}>
-                            <img id="avatar" src={params.avatar} />
+                            <img id="avatar" src={params.avatar} alt="user-avatar" />
                         </Col>
                         <Col lg={12}>
                             <p><BsFillPersonFill /> {params.name}</p>
