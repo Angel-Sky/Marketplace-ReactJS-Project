@@ -22,8 +22,14 @@
 }
 
 #nav-sign-in {
-    color: rgba(0, 0, 0, .8);
+    color: white;
     padding: 10px;
+    background: #343a40;
+    border-radius: 5px;
+}
+
+#nav-sign-in:hover{
+    background-color: #23272b;
 }
 
 .dropdown-toggle::after {

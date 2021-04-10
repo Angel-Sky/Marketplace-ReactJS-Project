@@ -4,6 +4,7 @@ const { PORT } = require('./config/config');
 const http = require('http').createServer(app);
 const auth = require('./middlewares/auth')
 const routes = require('./routes');
+require("dotenv").config();
 require('./config/express')(app);
 require('./config/mongoose');
 app.use(auth())
